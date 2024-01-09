@@ -1,0 +1,229 @@
+body{
+    margin: 0px;
+    padding: 0%;
+    font-family: 'Bree Serif', serif;
+}
+
+.titre_haut_de_page{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: #FFF;
+    font-family: Bree Serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    list-style: none;
+    padding: 10px;
+    align-items: center;
+}
+
+.titre_haut_de_page > :not(:first-child):not(:nth-child(1)) {
+    flex-grow: 1; /* Les éléments autres que les deux derniers vont occuper tout l'espace disponible */
+    padding-left: 20px ;
+  }
+
+.titre_haut_de_page > :first-child,
+
+
+
+.titre_haut_de_page > :nth-last-child(2) {
+    flex-shrink: 0; /* Les deux derniers éléments ne vont pas réduire leur taille */
+  }
+
+.bande_haut_de_page{
+    background: linear-gradient( to right, #EC826A, #E86584, #C24996, #A74898);
+}
+
+
+.Top_evenements{
+    color: #FFF;
+    font-family: Bree Serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 200;
+    padding-left: 30px;
+    
+}
+
+.banderole{
+    background: #3C3C3C;    
+}
+
+.bandeau_noir {
+    display: flex;
+    top : O%;
+    background-color: rgba(60,60,60,1);
+    height: 150px;
+    width: 100%;
+    color: white;
+    margin: 0%;
+    padding: 0px;
+    font-size: 45px;
+}
+
+.depla {
+    margin-left: 10%;
+}
+
+.leg {
+    margin-left:45%;
+    font-size: 20px;
+}
+
+.fleche {
+    position: absolute;
+    margin-left:30%;
+    margin-top: -83px;
+    width: 120px;
+    height: 90px;
+}
+
+.txt_fleche {
+    margin-top: 3%;
+    font-size: 25px;
+    margin-left:5%;
+}
+
+.field {
+    width: 36%;
+    margin-left:5%;
+    border-style:dashed;
+    margin-top: 30px;
+    float:left; 
+}
+
+.field p {
+    margin: 5px; /*escpace entre instrument*/
+    font-size: 28px;
+    margin-left: 15px;
+}
+
+.im_concert {
+    margin-right: 20%;
+    width: 500px;
+    height: 400px;
+    margin-top: 70px;
+    float:right;
+    
+}
+
+.manque {
+    margin-top: 350px;
+    margin-left:5%;
+    color:gray;
+    font-size: 25px;
+}
+
+.entree {
+    margin-left:5%;
+    width:200px;
+    height: 40px;
+    font-size: 30px;
+    font-family:;
+    
+}
+
+.txt {
+    margin-left: 10 %;
+    font-size:30px;
+}
+
+.bouton {
+    width: 150px;
+    height:30px;
+    border-radius: 30px;
+    margin-left: 1%;
+    border-color:#EC826A;
+    background-color: #EC826A;
+    color:white;
+    
+}
+
+.depla_2 {
+
+}
+
+.bandeau_noir_2 {
+    display: flex;
+    margin-top: 10%;
+    background-color: rgba(60,60,60,1);
+    height: 150px;
+    width: 100%;
+    color: white;
+    margin: 0%;
+    padding: 0px;
+    font-size: 45px;
+}
+
+.txt_titre_bas {
+    font-size: 120px;
+    margin-left: 40%;
+    margin-top: 20px;
+}
+
+.img_placement {
+    margin-left: 31%;
+}
+
+.bloc {
+}
+
+.txt_nom_bas {
+    font-size: 80px;
+    margin-left: 34%;
+    margin-top: 5px;
+}
+
+.social-icon-big {
+    max-width: 55px;
+}
+
+.social-icon-small {
+    max-width: 25px;
+}
+
+.social-icon {
+    max-width: 37px;
+}
+
+footer {
+    background: #3C3C3C;
+    color: white;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.flex-footer-item {
+    margin: 10px;
+    padding: 10px;
+    flex: 1;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}   
+
+.footer-logo {
+    max-width: 50px;
+}
+
+.flex-footer-row {
+    margin: 10px;
+    padding: 10px;
+    flex: 1;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

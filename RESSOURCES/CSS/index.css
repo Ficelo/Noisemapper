@@ -1,0 +1,279 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*Header*/
+
+.header-Antoine{
+    width: 100%;
+    z-index: 1000;
+    inset: 0;
+    position: sticky;
+    justify-content: space-between;
+    background: linear-gradient( to right, #EC826A, #E86584, #C24996, #A74898);
+  }
+
+
+.titre{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: #FFF;
+    font-family: Bree Serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    list-style: none;
+    padding: 10px;
+    align-items: center;  
+}
+
+.titre > :not(:first-child):not(:nth-child(1)) {
+    flex-grow: 1; /* Les éléments autres que les deux derniers vont occuper tout l'espace disponible */
+    padding-left: 20px ;
+  }
+
+.titre > :first-child,
+
+
+.titre > :nth-last-child(2) {
+    flex-shrink: 0; /* Les deux derniers éléments ne vont pas réduire leur taille */
+  }
+
+.banderole{
+    background: linear-gradient( to right, #EC826A, #E86584, #C24996, #A74898);
+
+}
+
+/*Banderole Noir de titre*/
+
+.banderole{
+    background: #3C3C3C;
+    width: 100%;
+
+}
+
+.Top_evenements{
+    display: flex;
+    color: #FFF;
+    font-family: Bree Serif;
+    font-size: 25px;
+    font-style: normal;
+    padding-top: 20px;
+    padding-bottom: 22px;
+
+}
+
+
+/*Slider*/
+
+.slider {
+    height: 80vh;
+    position: relative;
+}
+
+.slider img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity .5s;
+}
+
+.slider img.active {
+    opacity: 1;
+}
+
+.suivant, .precedent {
+    color: #fff;
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.suivant {
+    right: 1rem;
+}
+
+.precedent {
+    left: 1rem;
+}
+
+
+/*Calendrier*/
+
+.calendrier {
+    display: block;
+    width: fit-content;
+    padding: 2%;
+    font-family: 'Bree Serif', serif;
+    width: 40%;
+    margin-left: 5%;
+  }
+  
+  .calendrier-mois {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .calendrier-mois img {
+    width: 25%;
+    height: 25%;
+    padding-top: auto;
+  }
+  
+  
+  .calendrier-mois p {
+    padding-left: 2%;
+    font-size: 18px;
+  }
+  
+  table {
+    width: 400px;
+    height: 400px;
+  }
+  
+  
+  th {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .hover-bleu th{
+   border-radius: 7px;
+   align-items: center;
+  }
+  
+  .hover-bleu th:hover {
+    background-color: #E86584;
+  }
+  
+/*Avis*/
+
+.avis-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+  
+  .avis-resume {
+    padding: 5px;
+  }
+  
+  .avis-mesavis {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-right: 10%;
+    margin-left: 10%;
+    border : 2px dashed #000;
+  }
+  
+  .avis {
+    display: grid;
+    grid-template-columns: 10% 90%;
+    padding-left: 5%;
+    padding-bottom: 3%;
+  }
+  
+  h3 {
+    font-family: 'Bree Serif', serif;
+    text-align: center;
+  }
+  
+  .avis img{
+    margin-top: 45%;
+    margin-bottom: 20%;
+  }
+  
+  .avis-texte {
+    font-family: 'Bree Serif', serif;
+    padding-left: 2%;
+  }
+  
+  .resume-temp {
+    margin-bottom: 10%;
+    margin-left: 10%;
+    display: grid;
+    grid-template-columns: 70% 30%;
+  }
+  
+  #chartContainer {
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 370px; 
+    width: 80%;
+  }
+  
+  h2 {
+    font-family: 'Bree Serif', serif;
+    padding-left: 5%;
+  }
+  
+  .checked {
+    color: orange;
+  }
+  
+  .note-container {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+  }
+  
+  .barre-container {
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    height: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  
+  .note-container > p {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family: 'Bree Serif', serif;
+  }
+  
+  .barre {
+    border-radius: 10px;
+    background-color: orange; 
+    height:100%;
+  }
+  
+  .titre-concert {
+    margin-left: 10%;
+    font-family: 'Bree Serif', serif;
+    margin-top: 10%;
+  }
+  
+  .note-gros-chiffre {
+    text-align: center;
+    font-family: 'Bree Serif', serif;
+  }
+  
+  .grosse-note {
+    font-family: 'Bree Serif', serif;
+    font-size: 50px;
+    margin-top: 10%;
+    margin-bottom: 10%;
+  }
+  
+  .nombre-avis {
+    font-family: 'Bree Serif', serif;
+    color: #EE816A;  
+  }
+  
+  #res-avis {
+    font-family: 'Bree Serif', serif; 
+    padding-left: 10%; 
+    margin-top: 10%;
+  }
+
+

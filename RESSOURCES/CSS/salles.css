@@ -1,0 +1,31 @@
+#salleTable th, 
+#salleTable td,
+#userTable th,
+#userTable td,
+#concertTable th,
+#concertTable td{
+  border: 1px solid #000000;
+  padding: 8px;
+  text-align: left;
+}
+
+#salleTable,
+#userTable,
+#concertTable{
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+#salleTable th,
+#userTable th,
+#concertTable th{
+  background-color: #f2f2f2;
+}
+
+#salleTable tbody tr:hover, 
+#userTable tbody tr:hover,
+#concertTable tbody tr:hover {
+  background-color: #e2e6ea;
+}
