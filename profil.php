@@ -51,8 +51,8 @@ $conn->close();
         <?php endif; ?>
         <?php if ($role <= 1 ): ?>
             <h4>Espace concert</h4>
-            <li class="concert-tab"><a href="#concerts" onclick="showTab('concerts')">Gérer les concerts</a></li>
-            <li class="avis-tab"><a href="#avis" onclick="showTab('avis')">Consulter les avis</a></li>
+            <li class="concert-tab"><a href="artiste.php" onclick="showTab('concerts')">Gérer les concerts</a></li>
+            <li class="avis-tab"><a href="artiste.php" onclick="showTab('avis')">Consulter les avis</a></li>
         <?php endif; ?>
         
     </ul>
