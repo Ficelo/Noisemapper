@@ -19,14 +19,16 @@
     
         </div>
     </section>
+
+    <script src="RESSOURCES/JAVASCIPT/app.js"></script>
     
     <section class="slider">
-        <img src="images/1.jpg" alt="img1" class="img__slider active" />
-        <img src="images/2.jpg" alt="img2" class="img__slider" />
-        <img src="images/3.jpg" alt="img3" class="img__slider" />
-        <img src="images/4.jpg" alt="img3" class="img__slider" />
-        <img src="images/5.jpg" alt="img3" class="img__slider" />
-        <img src="images/6.jpg" alt="img3" class="img__slider" />
+        <img src="RESSOURCES/IMAGES/1.jpg" alt="img1" class="img__slider active" />
+        <img src="RESSOURCES/IMAGES/2.jpg" alt="img2" class="img__slider" />
+        <img src="RESSOURCES/IMAGES/3.jpg" alt="img3" class="img__slider" />
+        <img src="RESSOURCES/IMAGES/4.jpg" alt="img3" class="img__slider" />
+        <img src="RESSOURCES/IMAGES/5.jpg" alt="img3" class="img__slider" />
+        <img src="RESSOURCES/IMAGES/6.jpg" alt="img3" class="img__slider" />
 
         <div class="suivant">
             <i class="fas fa-chevron-circle-right"></i>
