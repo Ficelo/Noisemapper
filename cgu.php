@@ -1,47 +1,40 @@
-<?php
-if (!isset($_SESSION['user_email'])) {
-    session_start();
-    if (!isset($_SESSION['user_email'])) {
-        header("Location: login.php");
-        exit();
-    }
-}
-
-require('db.php');
-
-$sth = $conn->query('SELECT * FROM CGU');
-$cguRow = $sth->fetch_assoc();
-
-// Gérer la mise à jour des CGU si le formulaire est soumis
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cgu_text'])) {
-    $newCguText = $_POST['cgu_text'];
-
-    $updateQuery = "UPDATE CGU SET Text = ? WHERE idCGU = ?";
-    $stmt = $conn->prepare($updateQuery);
-    $stmt->bind_param("si", $newCguText, $cguRow['idCGU']);
-    $stmt->execute();
-    echo '<script>window.location.href = "profil.php";</script>';
-    exit();
-}
+<?php 
+session_start();
+include('header.php'); 
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGU Page</title>
+    
+</head>
 <body>
 
-<div class="cgu-content">
-    <h1>Conditions Générales d'Utilisation</h1>
+<div class="container">
+    <h1>Conditions Générales d'Utilisation (CGU)</h1>
+    <?php
+    include('db.php');
+    if ($conn->connect_error) {
+        die("La connexion à la base de données a échoué : " . $conn->connect_error);
+    }
+    $query = "SELECT * FROM CGU LIMIT 1";
+    $result = $conn->query($query);
+    
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $formattedContent = preg_replace('/(\d+\.\s)/', '<span class="section-title">$1</span>', nl2br(htmlspecialchars($row['Text'])));
 
-    <form method="post">
-        <textarea name="cgu_text" rows="10" cols="80"><?php echo htmlspecialchars($cguRow['Text']); ?></textarea>
-        <br>
-        <?php
-        // Vérifier si l'utilisateur a les autorisations nécessaires
-        if ($_SESSION['user_role'] == 0) {
-            echo '<input type="submit" value="Modifier">';
-        }
-        ?>
-    </form>
+        echo '<div class="cgu-content">' . $formattedContent . '</div>';
+    } 
+        else {
+        echo '<p>Aucune donnée trouvée dans la table CGU.</p>';
+    }
+    $conn->close();
+    ?>
 
 </div>
+<?php include('footer.php'); ?>
 </body>
 </html>
