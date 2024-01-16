@@ -319,7 +319,68 @@ textarea {
 
 
 
+/*ANTOINE*/
 
+
+
+
+.slider-wrapper{
+    position: relative;
+    width: 100%;
+    height: auto; 
+}
+
+.slider{
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory ;
+    scroll-behavior: smooth;
+    box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
+
+}
+
+.slider img {
+  scroll-snap-align: start;
+  object-fit: cover;
+}
+
+
+/*
+.slider-nav {
+    display: flex;
+    column-gap: 1rem;
+    position: absolute;
+    bottom: 1.25em;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+*/
+
+/*
+.slider-nav a{
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.75;
+  transition: opacity ease 250ms;
+}
+
+
+.slider-nav a:hover {
+  opacity: 1;
+}
+*/
+
+
+.calendrier-total{
+   background: #fff;
+   width: auto;
+   height: 500px;
+   display: flex;
+
+}
 
 
 
@@ -331,6 +392,162 @@ textarea {
 }
 
 
+.maison{
+  display: grid;
+  height: 100%;
+  place-items: center;
+  text-align: center;
+  background: #958a8a;
+  box-sizing: border-box;
+}
+
+
+.container{
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+.container .post{
+  display: none;
+}
+
+
+.container .text{
+  font-size: 25px;
+  color: #666;
+  font-weight: 500;
+}
+
+.container .edit{
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 16px;
+  color: #666;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.container .edit:hover{
+  text-decoration: underline;
+}
+
+.container .star-widget input{
+  display: none;
+}
+
+.star-widget label{
+  font-size: 40px;
+  color: #444444;
+  padding: 10px;
+  float: right;
+  transition: all 0.2s ease;
+}
+
+/* 
+.container form{
+  display: none;
+}
+input:checked ~ form{
+  display: block;
+}
+
+form header{
+  width: 100%;
+  font-size: 25px;
+  color: #fe7;
+  font-weight: 500;
+  margin: 5px 0 20px 0;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+form .textarea{
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
+}
+form .textarea textarea{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  color: #eee;
+  border: 1px solid #333;
+  background: #3C3C3C;
+  padding: 10px;
+  font-size: 17px;
+  resize: none;
+}
+.textarea textarea:focus{
+  border-color: #444;
+}
+form .btn{
+  height: 45px;
+  width: 100%;
+  margin: 15px 0;
+}
+
+form .btn button{
+  height: 100%;
+  width: 100%;
+  border: 1px solid #444;
+  outline: none;
+  background: #3C3C3C;
+  color: #999;
+  font-size: 17px;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+form .btn button:hover{
+  background: #1b1b1b;
+}
+
+*/
+.rating-container {
+  display: inline-block;
+}
+
+.star {
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc;
+}
+
+.star:hover,
+.star.active {
+  color: #FFD700;
+}
+
+#averageRating {
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+
+
+
+
+
+/*ANTOINE*/
+.message-container {
+  display: inline-block;
+  margin-left: 10px;
+  color: #000;
+  opacity: 1; /* Ajoutez cette ligne pour garantir que le texte est visible dès le début */
+  transition: opacity 0.5s; /* Ajoutez une transition pour une animation en douceur */
+  vertical-align: middle; /* Aligner le texte verticalement au milieu */
+}
+
+.error-message{
+  color: red;
+}
 
 /* Toggle Switch */
 
@@ -453,6 +670,24 @@ ligne
 
 
 
+
+/*.
+.Antoine
+{
+display: flex;
+justify-content: space-between;
+width:1000px;
+}
+
+
+.liste {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}*/
+
+
 #userTable {
     width: 80%; /* Ajustez la largeur du tableau */
     border-spacing: 20px; /* Ajoutez de l'espace entre les cellules du tableau */
@@ -528,6 +763,7 @@ h4 {
   text-align: left;
 }
 
+
 #salleTable,
 #userTable,
 #concertTable{
@@ -535,6 +771,14 @@ h4 {
   border-collapse: collapse;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
+}
+
+#liste{
+  flex: 1;
+}
+
+#adminAction{
+  width: 100px;
 }
 
 #salleTable th,
@@ -548,6 +792,270 @@ h4 {
 #concertTable tbody tr:hover {
   background-color: #e2e6ea;
 }
+
+
+.section-title {
+  font-weight: bold;
+}
+
+
+/*TEIVA pour Antoine*/
+
+.calendrier-instertion-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.calendrier {
+  display: block;
+  width: fit-content;
+  padding: 2%;
+  font-family: 'Bree Serif', serif;
+  width: 40%;
+  margin-left: 5%;
+}
+
+.calendrier-mois {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendrier-mois img {
+  width: 20%;
+  height: 20%;
+  padding-top: auto;
+}
+
+
+.calendrier-mois p {
+  padding-left: 2%;
+  font-size: 18px;
+}
+
+table {
+  width: 400px;
+  height: 400px;
+}
+
+
+th {
+  width: 25px;
+  height: 25px;
+}
+
+.hover-bleu th{
+ border-radius: 7px;
+ align-items: center;
+}
+
+.hover-bleu th:hover {
+  background-color: blue;
+  color: #FFF;
+}
+
+.button-blue-day {
+  font-family: 'Bree Serif', serif;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  font-size: 18px;
+}
+
+.button-blue-day:hover {
+  background-color: blue;
+  color: #FFF;
+  border-radius: 7px;
+  align-items: center;
+}
+
+.evenement-insertion {
+  margin-bottom: 5%;
+  text-align: center;
+  padding: 3%;
+  border-radius: 18px;
+  border: 3px solid #E86584;
+  background: rgba(217, 217, 217, 0.00);
+}
+
+#image-insertion {
+  width: 100%;  
+  height: 100%;
+}
+
+.evenement-creation-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  margin-left: 25%;
+  margin-right: 5%;
+}
+.evenement-creation {
+  margin-bottom: 5%;
+  padding: 3%;
+  border-radius: 18px;
+  border: 3px solid #E86584;
+  background: rgba(217, 217, 217, 0.00);
+  width: 92%;
+  text-align: center;
+}
+
+.calendrier-total input {
+  border: none;
+  text-align: center;
+}
+
+#bouton-annuler {
+  border-radius: 119px;
+  background: #7B7B7B;
+}
+
+#bouton-creer {
+  border-radius: 119px;
+  background: #EE816A;
+}
+
+.calendrier-total input[type="reset"], 
+.calendrier-total input[type="submit"] {
+  color: #FFF;
+  text-align: center;
+  font-family: Bree Serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 40%;
+}
+
+.evenement-boutons {
+  width: 92%;
+  text-align: center;
+}
+
+.avis-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.avis-resume {
+  padding: 5px;
+}
+
+.avis-mesavis {
+  margin-top: 10%;
+  margin-bottom: 10%;
+  margin-right: 10%;
+  margin-left: 10%;
+  border : 2px dashed #000;
+}
+
+.avis {
+  display: grid;
+  grid-template-columns: 10% 90%;
+  padding-left: 5%;
+  padding-bottom: 3%;
+}
+
+h3 {
+  font-family: 'Bree Serif', serif;
+  text-align: center;
+}
+
+.avis img{
+  margin-top: 45%;
+  margin-bottom: 20%;
+}
+
+.avis-texte {
+  font-family: 'Bree Serif', serif;
+  padding-left: 2%;
+}
+
+.resume-temp {
+  margin-bottom: 10%;
+  margin-left: 10%;
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+#chartContainer {
+  padding-left: 5%;
+  padding-right: 5%;
+  height: 370px; 
+  width: 80%;
+}
+
+.banderole h2 {
+  font-family: 'Bree Serif', serif;
+  padding-left: 5%;
+}
+
+.checked {
+  color: orange;
+}
+
+.note-container {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+}
+
+.barre-container {
+  background-color: #D9D9D9;
+  border-radius: 10px;
+  height: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.note-container > p {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-family: 'Bree Serif', serif;
+}
+
+.barre {
+  border-radius: 10px;
+  background-color: orange; 
+  height:100%;
+}
+
+.titre-concert {
+  margin-left: 10%;
+  font-family: 'Bree Serif', serif;
+  margin-top: 10%;
+}
+
+.note-gros-chiffre {
+  text-align: center;
+  font-family: 'Bree Serif', serif;
+}
+
+.grosse-note {
+  font-family: 'Bree Serif', serif;
+  font-size: 50px;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.nombre-avis {
+  font-family: 'Bree Serif', serif;
+  color: #EE816A;  
+}
+
+#res-avis {
+  font-family: 'Bree Serif', serif; 
+  padding-left: 10%; 
+  margin-top: 10%;
+}
+
 
 
 
@@ -819,282 +1327,58 @@ h3 {
 }
 
 
-* {
-    margin: 0;
-    padding: 0;
-}
-
-/*Header*/
-
-.header-Antoine{
-    width: 100%;
-    z-index: 1000;
-    inset: 0;
-    position: sticky;
-    justify-content: space-between;
-    background: linear-gradient( to right, #EC826A, #E86584, #C24996, #A74898);
-  }
-
-
-.titre{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    color: #FFF;
-    font-family: Bree Serif;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    list-style: none;
-    padding: 10px;
-    align-items: center;  
-}
-
-.titre > :not(:first-child):not(:nth-child(1)) {
-    flex-grow: 1; /* Les éléments autres que les deux derniers vont occuper tout l'espace disponible */
-    padding-left: 20px ;
-  }
-
-.titre > :first-child,
-
-
-.titre > :nth-last-child(2) {
-    flex-shrink: 0; /* Les deux derniers éléments ne vont pas réduire leur taille */
-  }
-
-.banderole{
-    background: linear-gradient( to right, #EC826A, #E86584, #C24996, #A74898);
-
-}
-
-/*Banderole Noir de titre*/
-
-.banderole{
-    background: #3C3C3C;
-    width: 100%;
-
-}
-
-.Top_evenements{
-    display: flex;
-    color: #FFF;
-    font-family: Bree Serif;
-    font-size: 25px;
-    font-style: normal;
-    padding-top: 20px;
-    padding-bottom: 22px;
-
-}
-
-
-/*Slider*/
-
-.slider {
-    height: 80vh;
-    position: relative;
-}
-
-.slider img {
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity .5s;
-}
-
-.slider img.active {
-    opacity: 1;
-}
-
-.suivant, .precedent {
-    color: #fff;
-    font-size: 50px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+/* Gestion du responsive */
+.menu-toggle {
+    display: none;
     cursor: pointer;
 }
 
-.suivant {
-    right: 1rem;
+.dropdown-nav{
+    display: none;
 }
 
-.precedent {
-    left: 1rem;
+@media screen and (max-width: 768px) {
+    .hidden {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+    }
+
+    .titre_haut_de_page {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .dropdown-nav .dropdown-nav-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .dropdown-nav.active .dropdown-nav-content {
+        display: block;
+    }
+
+    .dropdown-nav .menu-toggle::after {
+        content: "▼";
+        margin-left: 5px;
+    }
 }
 
 
-/*Calendrier*/
 
-.calendrier {
-    display: block;
-    width: fit-content;
-    padding: 2%;
-    font-family: 'Bree Serif', serif;
-    width: 40%;
-    margin-left: 5%;
-  }
-  
-  .calendrier-mois {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .calendrier-mois img {
-    width: 25%;
-    height: 25%;
-    padding-top: auto;
-  }
-  
-  
-  .calendrier-mois p {
-    padding-left: 2%;
-    font-size: 18px;
-  }
-  
-  table {
-    width: 400px;
-    height: 400px;
-  }
-  
-  
-  th {
-    width: 25px;
-    height: 25px;
-  }
-  
-  .hover-bleu th{
-   border-radius: 7px;
-   align-items: center;
-  }
-  
-  .hover-bleu th:hover {
-    background-color: #E86584;
-  }
-  
-/*Avis*/
+.faq-answer{
+  align-items: center;
+  justify-content: center;
+}
 
-.avis-container {
-    display: grid;
-    grid-template-columns: 50% 50%;
-  }
-  
-  .avis-resume {
-    padding: 5px;
-  }
-  
-  .avis-mesavis {
-    margin-top: 10%;
-    margin-bottom: 10%;
-    margin-right: 10%;
-    margin-left: 10%;
-    border : 2px dashed #000;
-  }
-  
-  .avis {
-    display: grid;
-    grid-template-columns: 10% 90%;
-    padding-left: 5%;
-    padding-bottom: 3%;
-  }
-  
-  h3 {
-    font-family: 'Bree Serif', serif;
-    text-align: center;
-  }
-  
-  .avis img{
-    margin-top: 45%;
-    margin-bottom: 20%;
-  }
-  
-  .avis-texte {
-    font-family: 'Bree Serif', serif;
-    padding-left: 2%;
-  }
-  
-  .resume-temp {
-    margin-bottom: 10%;
-    margin-left: 10%;
-    display: grid;
-    grid-template-columns: 70% 30%;
-  }
-  
-  #chartContainer {
-    padding-left: 5%;
-    padding-right: 5%;
-    height: 370px; 
-    width: 80%;
-  }
-  
-  h2 {
-    font-family: 'Bree Serif', serif;
-    padding-left: 5%;
-  }
-  
-  .checked {
-    color: orange;
-  }
-  
-  .note-container {
-    display: flex;
-    flex-direction: row;
-    height: 40px;
-  }
-  
-  .barre-container {
-    background-color: #D9D9D9;
-    border-radius: 10px;
-    height: 20px;
-    margin-top: auto;
-    margin-bottom: auto;
-  }
-  
-  .note-container > p {
-    margin-top: auto;
-    margin-bottom: auto;
-    font-family: 'Bree Serif', serif;
-  }
-  
-  .barre {
-    border-radius: 10px;
-    background-color: orange; 
-    height:100%;
-  }
-  
-  .titre-concert {
-    margin-left: 10%;
-    font-family: 'Bree Serif', serif;
-    margin-top: 10%;
-  }
-  
-  .note-gros-chiffre {
-    text-align: center;
-    font-family: 'Bree Serif', serif;
-  }
-  
-  .grosse-note {
-    font-family: 'Bree Serif', serif;
-    font-size: 50px;
-    margin-top: 10%;
-    margin-bottom: 10%;
-  }
-  
-  .nombre-avis {
-    font-family: 'Bree Serif', serif;
-    color: #EE816A;  
-  }
-  
-  #res-avis {
-    font-family: 'Bree Serif', serif; 
-    padding-left: 10%; 
-    margin-top: 10%;
-  }
-
-
+.top-events{
+  align-items: center;
+  justify-content: center;
+}
