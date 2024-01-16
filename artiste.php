@@ -63,94 +63,108 @@ $conn->close();
 </section>
 
 <form action="postevent.php" method="post">
-<div class="calendrier-instertion-container">
+    <div class="calendrier-instertion-container">
 
 
-    <div class="calendrier">
-        <div class="calendrier-mois">
-            <p id="moisAnnee">Janvier 2024</p>
-            <img onclick="changerMoisGauche()" id="flecheGauche" src="../RESSOURCES/IMAGES/flecheG.svg" alt="">
-            <img onclick="changerMoisDroite()" id="flecheDroite" src="../RESSOURCES/IMAGES/flecheD.svg" alt="">
+        <div class="calendrier">
+            <div class="calendrier-mois">
+                <p id="moisAnnee">Janvier 2024</p>
+                <img onclick="changerMoisGauche()" id="flecheGauche" src="../RESSOURCES/IMAGES/flecheG.svg" alt="">
+                <img onclick="changerMoisDroite()" id="flecheDroite" src="../RESSOURCES/IMAGES/flecheD.svg" alt="">
+            </div>
+            <div class="calendrier-jours">
+                <table>
+                    <tr>
+                        <th>Lun</th>
+                        <th>Mar</th>
+                        <th>Mer</th>
+                        <th>Jeu</th>
+                        <th>Ven</th>
+                        <th>Sam</th>
+                        <th>Dim</th>
+                    </tr>
+                    <tr class="hover-bleu">
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="1"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="2"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="3"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="4"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="5"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="6"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="7"></th>
+                    </tr>
+                    <tr class="hover-bleu">
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="8"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="9"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="10"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="11"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="12"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="13"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="14"></th>
+                    </tr>
+                    <tr class="hover-bleu">
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="15"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="16"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="17"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="18"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="19"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="20"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="21"></th>
+                    </tr>
+                    <tr class="hover-bleu">
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="22"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="23"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="24"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="25"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="26"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="27"></th>
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="28"></th>
+                    </tr>
+                    <tr class="hover-bleu">
+                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="29"></th>
+                        <th id="30"><input onclick="showValue(this)" class="button-blue-day" type="button" value="30"></th>
+                        <th id="31"><input onclick="showValue(this)" class="button-blue-day" type="button" value="31"></th>
+                        
+                    </tr>
+
+                    <input type="hidden" id="buttonValue" name="buttonValue" value="1">
+                    <input type="hidden" id="moisValue" name="moisValue" value="Janvier">
+                    <input type="hidden" id="anneeValue" name="anneeValue" value="2024">
+                </table>    
+            </div>
         </div>
-        <div class="calendrier-jours">
-            <table>
-                <tr>
-                    <th>Lun</th>
-                    <th>Mar</th>
-                    <th>Mer</th>
-                    <th>Jeu</th>
-                    <th>Ven</th>
-                    <th>Sam</th>
-                    <th>Dim</th>
-                </tr>
-                <tr class="hover-bleu">
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="1"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="2"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="3"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="4"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="5"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="6"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="7"></th>
-                </tr>
-                <tr class="hover-bleu">
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="8"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="9"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="10"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="11"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="12"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="13"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="14"></th>
-                </tr>
-                <tr class="hover-bleu">
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="15"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="16"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="17"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="18"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="19"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="20"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="21"></th>
-                </tr>
-                <tr class="hover-bleu">
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="22"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="23"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="24"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="25"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="26"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="27"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="28"></th>
-                </tr>
-                <tr class="hover-bleu">
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="29"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="30"></th>
-                    <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="31"></th>
+
+        <div class="evenement-creation-wrapper">
+            <div class="evenement-creation">
+                
+                    <input class="evenement-creation" type="text" name="nom-evenement" id="nom-evenement" placeholder="Nom de l'évenement"><br>
+                    <input class="evenement-creation" type="number" name="duree-evenement" id="duree-evenement" placeholder="Durée du concert en minutes"><br>
+                    <textarea class="evenement-creation" name="description-evenement" id="description-evenement" cols="30" rows="10" placeholder="Description"></textarea><br>
+                    <div class="evenement-creation">
+                        <label for="classique">Classique : </label>
+                        <input type="checkbox" name="classique" id=""><br>
+                    </div>
                     
-                </tr>
-
-                <input type="hidden" id="buttonValue" name="buttonValue" value="1">
-                <input type="hidden" id="moisValue" name="moisValue" value="Janvier">
-                <input type="hidden" id="anneeValue" name="anneeValue" value="2024">
-            </table>    
+                    <select class="evenement-creation" name="salle-evenement" id="salle-evenement"><br>
+                        <option value="1" selected="true">Bercy</option>
+                        <!-- <option value=""></option>
+                        <option value=""></option> -->
+                    </select><br>
+                
+            </div>
+            <!-- <div class = "evenement-insertion">
+                <img src="./RESSOURCES/IMAGES/image-insertion.png" alt="" id="image-insertion">
+            </div> -->
+            <div class = "evenement-boutons">
+                <input type="reset" id="bouton-annuler" value="Annuler">
+                <input type="submit" id="bouton-creer" value="Créer">
+            </div>
         </div>
+
+        
+        <!-- Ici y'a des trucs à changer pour que ça rende mieux visuellement -->
+        <!-- Aussi faut que je vois comment faire l'upload de fichiers. -->
+
     </div>
-
-    <div class="evenement-creation-wrapper">
-        <div class="evenement-creation">
-            <input type="text" name="nom-evenement" id="nom-evenement" placeholder="Nom de l'évenement">
-        </div>
-        <div class = "evenement-insertion">
-            <img src="./RESSOURCES/IMAGES/image-insertion.png" alt="" id="image-insertion">
-        </div>
-        <div class = "evenement-boutons">
-            <input type="reset" id="bouton-annuler" value="Annuler">
-            <input type="submit" id="bouton-creer" value="Créer">
-        </div>
-    </div>
-
-    
-    <!-- Ici y'a des trucs à changer pour que ça rende mieux visuellement -->
-    <!-- Aussi faut que je vois comment faire l'upload de fichiers. -->
-
-</div>
 </form>
 
 <section class="banderole">
@@ -175,7 +189,7 @@ $conn->close();
         <h4 class="titre-concert">
             <?php 
 
-                $sql = "SELECT Nom, Description FROM concert WHERE idConcert = 1";
+                $sql = "SELECT Nom, Description FROM concert WHERE idConcert = 17";
                 $result = $conn->query($sql) or die(mysqli_error($conn));
 
                 $row = $result->fetch_assoc();
@@ -184,7 +198,7 @@ $conn->close();
         </h4>
 
         <?php
-            $sql = "SELECT COUNT(idAvis) as totalAvis FROM Avis WHERE Concert_idConcert = 1";
+            $sql = "SELECT COUNT(idAvis) as totalAvis FROM Avis WHERE Concert_idConcert = 17";
             $result = $conn->query($sql) or die(mysqli_error($conn));
 
             $row = $result->fetch_assoc();
@@ -246,6 +260,7 @@ $conn->close();
             <?php
 
                 $moyenne = ($NOTES_1 + $NOTES_2*2 + $NOTES_3*3 + $NOTES_4*4 + $NOTES_5*5)/$TOTALAVIS;
+                $moyenne = round($moyenne, 2);
 
             ?>
 
@@ -275,7 +290,7 @@ $conn->close();
     <div class="avis-mesavis">
         <h3 id="avis-titre">Mes Avis</h3>
         <?php 
-            $sql = "SELECT User_idUser, Note, Commentaire FROM Avis WHERE Concert_idConcert = 1";
+            $sql = "SELECT User_idUser, Note, Commentaire FROM Avis WHERE Concert_idConcert = 17";
             $result = $conn->query($sql) or die(mysqli_error($conn));
 
             //$row = $result->fetch_assoc();
@@ -385,6 +400,8 @@ chart.render();
 <script src="https://cdn.canvasjs.com/ga/canvasjs.min.js"></script>
 <br>
 <br>
+
+<?php include('footer.php'); ?>
 
 </body>
 </html>

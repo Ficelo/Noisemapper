@@ -1,5 +1,12 @@
 <?php
 
+    session_start();
+
+    if (!isset($_SESSION['user_email'])) {
+        header("Location: login.php");
+        exit();
+    }
+
     include("./config/config.php");
     $servername = $SERVERNAME;
     $username = $USERNAME;
@@ -36,25 +43,35 @@
     $moisValue = findIndexInArray($MOIS, $_POST["moisValue"]);
     $anneeValue = $_POST["anneeValue"];
     $nomEvenement = $_POST["nom-evenement"];
+    $dureeEvenement = $_POST["duree-evenement"];
+    $descriptionEvenement = $_POST["description-evenement"];
+    $classique = $_POST["classique"];
+    $salleEvenement = $_POST["salle-evenement"];
+    $idUser = $_SESSION['user_id'];
+
+    if ($classique == "on") {
+        $classique = 1;
+    } else {
+        $classique = 0;
+    }
 
     $DATE = $anneeValue."-".$moisValue."-".$buttonValue." 00:00:00";
 
-    // echo "<p>Jour : ".$buttonValue."</p>";
-    // echo "<p>Mois : ".$moisValue."</p>";
-    // echo "<p>Année : ".$anneeValue."</p>";
-    // echo "<p>Nom de l'évenement : ".$nomEvenement."</p>";
+    $stmt = $conn->prepare("INSERT INTO Concert (`Durée`, `Nom`, `Date`, `Description`, `Classique`, `Placement`, `Salle_idSalle`, `User_idUser`)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("isssisii", $duree, $nom, $date, $desc, $class, $place, $salle, $id);
 
+    $duree = $dureeEvenement;
+    $nom = $nomEvenement;
+    $date = $DATE;
+    $desc = $descriptionEvenement;
+    $class = $classique;
+    $place = NULL;
+    $salle = $salleEvenement;
+    $id = $idUser;
+    $stmt->execute();
 
-    $sql = "INSERT INTO Concert (`Durée`, `Nom`, `Date`, `Description`, `Classique`, `Placement`, `Salle_idSalle`, `User_idUser`) 
-                    VALUES (120 ,'$nomEvenement', '$DATE', 'descriptionz test', 0, NULL, 1, 5)";
-    //echo $sql;
-
-
-    if ($conn->query($sql) === TRUE) {
-        //echo "C'est carré";
-    } else {
-        //echo "AUUUUUUUGH " . $conn->error;
-    }
-     
+    $stmt->close();
+    $conn->close();
     header('Location: artiste.php');
 ?>

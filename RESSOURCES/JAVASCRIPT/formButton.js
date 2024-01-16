@@ -5,7 +5,8 @@ function showValue(button) {
     //alert("La valeur du bouton est : " + buttonValue);
 }
 
-const MOIS =["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Décembre"];
+const MOIS = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Décembre"];
+const JOURSMOIS = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 var listeElementsBleu = [];
 
 
@@ -16,6 +17,9 @@ function changerMoisGauche(mois) {
     var annee = parseInt(splitee[1]);
     var index = MOIS.indexOf(mois);
 
+    var trente = document.getElementById("30");
+    var trenteUn = document.getElementById("31");
+
     if(index > 0) {
         index -= 1
     } else {
@@ -23,10 +27,23 @@ function changerMoisGauche(mois) {
         annee -= 1;
     }
     mois = MOIS[index];
+    var nbJoursMois = JOURSMOIS[index];
     
     document.getElementById('moisValue').value = mois;
     document.getElementById('moisAnnee').innerText = (mois + " " + annee);
     document.getElementById('anneeValue').value = annee;
+
+    if (nbJoursMois == 31) {
+        trente.style.display = "table-cell";
+        trenteUn.style.display = "table-cell";
+    }
+    else if (nbJoursMois == 30) {
+        trente.style.display = "table-cell";
+        trenteUn.style.display = "none";
+    } else {
+        trente.style.display = "none";
+        trenteUn.style.display = "none";
+    }
 }
 
 function changerMoisDroite(mois) {
@@ -36,6 +53,9 @@ function changerMoisDroite(mois) {
     var annee = parseInt(splitee[1]);
     var index = MOIS.indexOf(mois);
 
+    var trente = document.getElementById("30");
+    var trenteUn = document.getElementById("31");
+
     if(index <= 10) {
         index += 1
     } else {
@@ -43,11 +63,26 @@ function changerMoisDroite(mois) {
         annee += 1;
     }
     mois = MOIS[index];
+    var nbJoursMois = JOURSMOIS[index];
     
     document.getElementById('moisValue').value = mois;
     document.getElementById('moisAnnee').innerText = (mois + " " + annee);
-    document.getElementById('anneeValue').value = annee;    
+    document.getElementById('anneeValue').value = annee;
+
+    if (nbJoursMois == 31) {
+        trente.style.display = "table-cell";
+        trenteUn.style.display = "table-cell";
+    }
+    else if (nbJoursMois == 30) {
+        trente.style.display = "table-cell";
+        trenteUn.style.display = "none";
+    } else {
+        trente.style.display = "none";
+        trenteUn.style.display = "none";
+    }
+
 }
+
 
 function mettreBleu(element) {
 
