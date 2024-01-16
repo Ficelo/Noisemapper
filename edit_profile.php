@@ -8,7 +8,13 @@ if (!isset($_SESSION['user_email'])) {
 
 include('db.php');
 
-$user_id = $_SESSION['user_id'];
+
+if (isset($_GET['id']) && $_SESSION['user_role'] == 0 ) {
+    $user_ID = $_GET['id'];
+} 
+else {
+    $user_ID = $_SESSION['user_id'];
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -58,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (move_uploaded_file($_FILES['new_profile_picture']['tmp_name'], $targetFile)) {
                 // Mettez à jour le chemin de la nouvelle photo de profil dans la base de données
                 $newProfilePicturePath = $targetFile;
-                $sqlUpdatePicture = "UPDATE User SET PhotoProfil='$newProfilePicturePath' WHERE idUser = $user_id";
+                $sqlUpdatePicture = "UPDATE User SET PhotoProfil='$newProfilePicturePath' WHERE idUser = $user_ID";
                 $conn->query($sqlUpdatePicture);
                 echo "La nouvelle photo de profil a été téléchargée avec succès.";
             } else {
@@ -71,23 +77,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $newFirstName = $_POST['new_first_name'];
     $newLastName = $_POST['new_last_name'];
     $newLanguage = $_POST['new_language'];
+    $newRole = $_POST['new_role'];
     $theme_preference = $_POST['theme_preference'];
 
 
     // You should perform proper validation and sanitization here
 
-    $sqlUpdate = "UPDATE User SET Prenom='$newFirstName', Nom='$newLastName', Langue='$newLanguage' , PrefCouleur='$theme_preference' WHERE idUser = $user_id";
+    $sqlUpdate = "UPDATE User SET Prenom='$newFirstName', Nom='$newLastName', Langue='$newLanguage', PrefCouleur='$theme_preference', Role='$newRole' WHERE idUser = " . $_POST['user_id'];
     if ($conn->query($sqlUpdate) === TRUE) {
         header("Location: profil.php");
         exit();
     } else {
-        echo "Erreur lors de la mise à jour du profil : " . $conn->error;
-        exit();
+    echo "Erreur lors de la mise à jour du profil : " . $conn->error;
+     exit();
     }
 }
 
 // Retrieve the current user data
-$sqlSelect = "SELECT * FROM User WHERE idUser = $user_id";
+$sqlSelect = "SELECT * FROM User WHERE idUser = $user_ID";
 $result = $conn->query($sqlSelect);
 
 if ($result->num_rows > 0) {
@@ -125,19 +132,31 @@ $conn->close();
         <input type="file" id="new_profile_picture" name="new_profile_picture">
         
         <label for="new_language">Préférence de langue :</label>
-        <select id="new_language" name="new_language" value="<?php echo $user_data['Langue']; ?>" required>
-                <option value="fr">Français</option>
-                <option value="en">English</option>
-            </select>
+        <select id="new_language" name="new_language" required>
+            <option value="fr" <?php echo ($user_data['Langue'] == 'fr') ? 'selected' : ''; ?>>Français</option>
+            <option value="en" <?php echo ($user_data['Langue'] == 'en') ? 'selected' : ''; ?>>English</option>
+        </select>
+
+        <?php
+        if ($_SESSION['user_role'] == 0) {
+            echo '<label for="new_role">Rôle :</label>';
+            echo '<select id="new_role" name="new_role">';
+            echo '<option value="2" ' . (($user_data['Role'] == 2) ? 'selected' : '') . '>Utilisateur</option>';
+            echo '<option value="1" ' . (($user_data['Role'] == 1) ? 'selected' : '') . '>Artiste</option>';
+            echo '<option value="0" ' . (($user_data['Role'] == 0) ? 'selected' : '') . '>Administrateur</option>';
+            echo '</select>';
+        }
+        ?>
             <label for="checkbox" id="theme-label">Préférence de thème :</label>
             <input type="hidden" id="theme_preference" name="theme_preference" value="0">
-<div class="container-toggle">
+    <div class="container-toggle">
             <label class="switch">
     <input type="checkbox" id="theme-switch"/>
     <span></span>
 </label>
 <span id="message-container" class="message-container">Thème clair</span>
 </div>
+<input type="hidden" name="user_id" value="<?php echo $user_ID; ?>">
 <button type="submit">Enregistrer les modifications</button>
     </form>
 </div>
