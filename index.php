@@ -20,7 +20,6 @@
         </div>
     </section>
 
-    <script src="RESSOURCES/JAVASCIPT/app.js"></script>
     
     <section class="slider">
         <img src="RESSOURCES/IMAGES/1.jpg" alt="img1" class="img__slider active" />
@@ -37,7 +36,7 @@
             <i class="fas fa-chevron-circle-left"></i>
         </div>
     </section>
-    <script src="app.js"></script>
+    <script src="RESSOURCES/JAVASCRIPT/app.js"></script>
 
     <section class="banderole">
         <div class="Top_evenements">
