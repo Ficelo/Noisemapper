@@ -27,9 +27,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoiseMapper - Mon compte</title>
-    <link rel="stylesheet" href="./RESSOURCES/CSS/profil.css">
-    <link rel="stylesheet" href="./RESSOURCES/CSS/bandeaux.css">
-    <link rel="stylesheet" href="./RESSOURCES/CSS/salles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <?php include('header.php'); ?>
@@ -51,8 +49,8 @@ $conn->close();
         <?php endif; ?>
         <?php if ($role <= 1 ): ?>
             <h4>Espace concert</h4>
-            <li class="concert-tab"><a href="artiste.php" onclick="showTab('concerts')">Gérer les concerts</a></li>
-            <li class="avis-tab"><a href="artiste.php" onclick="showTab('avis')">Consulter les avis</a></li>
+            <li class="concert-tab"><a href="#concerts" onclick="showTab('concerts')">Gérer les concerts</a></li>
+            <li class="avis-tab"><a href="#avis" onclick="showTab('avis')">Consulter les avis</a></li>
         <?php endif; ?>
         
     </ul>
@@ -74,29 +72,29 @@ $conn->close();
 
     <div id="salles" class="tab-content">
         <div class="container">
-        <?php include('./salles.php')?>
+        <?php include('salles.php')?>
         </div>
     </div>
 
     <div id="admin" class="tab-content admin-content">
-        <?php include('./admin.php')?>
+        <?php include('admin.php')?>
     </div>
 
     <div id="concerts" class="tab-content">
         <div class="container">
-        <?php include('./concerts.php')?>
+        <?php include('concerts.php')?>
         </div>
     </div>
 
     <div id="cgu" class="tab-content">
         <div class="container">
-        <?php include('./cgu.php')?>
+        <?php include('edit_cgu.php')?>
         </div>
     </div>
     
     <div id="mentions" class="tab-content">
         <div class="container">
-        <?php include('./mentions.php')?>
+        <?php include('edit_mentions.php')?>
         </div>
     </div>
 </div>
