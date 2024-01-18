@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./RESSOURCES/CSS/bandeaux.css" />
     <link rel="stylesheet" href="./RESSOURCES/CSS/index.css" />
-    <link rel="stylesheet" href="./RESSOURCES/CSS/artiste.css">
+    
     <script src="./RESSOURCES/JAVASCRIPT/formButton.js"></script>
 
 </head>
@@ -19,7 +19,6 @@
     <section class="banderole">
         <div class="Top_evenements">
             <H2>Top Évènements</H2>
-    
         </div>
     </section>
 
@@ -54,8 +53,8 @@
         <div class="calendrier">
             <div class="calendrier-mois">
                 <p id="moisAnnee">Janvier 2024</p>
-                <img onclick="changerMoisGauche()" id="flecheGauche" src="../RESSOURCES/IMAGES/flecheG.svg" alt="">
-                <img onclick="changerMoisDroite()" id="flecheDroite" src="../RESSOURCES/IMAGES/flecheD.svg" alt="">
+                <img onclick="changerMoisGauche()" id="flecheGauche" src="/RESSOURCES/IMAGES/flecheG.svg" alt="">
+                <img onclick="changerMoisDroite()" id="flecheDroite" src="/RESSOURCES/IMAGES/flecheD.svg" alt="">
             </div>
             <div class="calendrier-jours">
                 <table>
@@ -69,8 +68,7 @@
                         <th>Dim</th>
                     </tr>
                     <tr class="hover-bleu">
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="1"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="2"></th>
+                        <th><input id="date-2024-01-02" onclick="showValue(this)" class="button-blue-day" type="button" value="2"></th>
                         <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="3"></th>
                         <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="4"></th>
                         <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="5"></th>
@@ -118,50 +116,101 @@
             </div>
         </div>
 
-        <div class="evenement-creation-wrapper">
-            <div class="evenement-creation">
-                
-                    <input class="evenement-creation" type="text" name="nom-evenement" id="nom-evenement" placeholder="Nom de l'évenement"><br>
-                    <input class="evenement-creation" type="number" name="duree-evenement" id="duree-evenement" placeholder="Durée du concert en minutes"><br>
-                    <textarea class="evenement-creation" name="description-evenement" id="description-evenement" cols="30" rows="10" placeholder="Description"></textarea><br>
-                    <div class="evenement-creation">
-                        <label for="classique">Classique : </label>
-                        <input type="checkbox" name="classique" id=""><br>
-                    </div>
-                    
-                    <select class="evenement-creation" name="salle-evenement" id="salle-evenement"><br>
-                        <option value="1" selected="true">Bercy</option>
-                        <!-- <option value=""></option>
-                        <option value=""></option> -->
-                    </select><br>
-                
-            </div>
-            <!-- <div class = "evenement-insertion">
-                <img src="./RESSOURCES/IMAGES/image-insertion.png" alt="" id="image-insertion">
-            </div> -->
-            <div class = "evenement-boutons">
-                <input type="reset" id="bouton-annuler" value="Annuler">
-                <input type="submit" id="bouton-creer" value="Créer">
-            </div>
-        </div>
-
-        
-        <!-- Ici y'a des trucs à changer pour que ça rende mieux visuellement -->
-        <!-- Aussi faut que je vois comment faire l'upload de fichiers. -->
 
     </div>
-</form>
+    
 
+
+</form>
 
     <section class="banderole">
         <div class="Top_evenements">
             <H2>Note des Concerts</H2>
         </div>
+
+        <form id="ratingForm">
+
     </section>
 
+    <?php
+include('db.php');
+
+
+
+// Sélectionne les données nécessaires de la table Concert
+$sql = "SELECT idConcert, Nom FROM Concert";
+
+// Exécute la requête SQL
+$result = $conn->query($sql);
+
+// Vérifie si des données ont été récupérées avec succès
+if ($result->num_rows > 0) {
+    // Initialise le tableau pour stocker les données
+    $concerts = array();
+
+    // Parcourt les données et les stocke dans le tableau
+    while($row = $result->fetch_assoc()) {
+        $concerts[] = $row;
+    }
+} else {
+    // Si aucune donnée n'est disponible, renvoie un tableau vide
+    echo json_encode(array());
+}
+
+// Ferme la connexion à la base de données
+$conn->close();
+?>
+
+
+</form>
+<div class="notetot">
+        <div class="rating-container">
+            <div class="rating-stars" id="ratingStars">
+                <span class="star" onclick="setRating(1)">&#9733;</span>
+                <span class="star" onclick="setRating(2)">&#9733;</span>
+                <span class="star" onclick="setRating(3)">&#9733;</span>
+                <span class="star" onclick="setRating(4)">&#9733;</span>
+                <span class="star" onclick="setRating(5)">&#9733;</span>
+            </div>
+
+ 
+
+    <form action="votreScriptDeTraitement.php" method="post">
+        <label for="selectConcert">Choisissez un concert :</label>
+        <select id="selectConcert" name="selectConcert">
+            <?php
+            // Inclure le fichier de configuration de la base de données
+            include('./db.php');
+
+            // Requête pour récupérer les noms des concerts
+            $sql = "SELECT Nom FROM concert";
+            $result = $conn->query($sql);
+
+            // Vérifier s'il y a des résultats
+            if ($result->num_rows > 0) {
+                // Parcourir les résultats et ajouter des options à la liste déroulante
+                while ($row = $result->fetch_assoc()) {
+                    echo "<option value='" . $row["Nom"] . "'>" . $row["Nom"] . "</option>";
+                }
+            } else {
+                echo "<option value=''>Aucun concert disponible</option>";
+            }
+
+            // Fermer la connexion
+            $conn->close();
+            ?>
+        </select>
+        <input type="submit" value="Attribuer une note">
+    </form>
+</div>
+</div>
     
+
 </body>
 
 
+
+    
+<?php include('./footer.php'); ?>
 
 </html>
