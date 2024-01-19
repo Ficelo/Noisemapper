@@ -352,6 +352,7 @@ td, th {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
+  text-decoration: none;
 }
 
 /* Style de l'en-tête du tableau */
@@ -369,3 +370,8 @@ tr:hover {
   background-color: #e5e5e5;
 }
 
+#lienConcert{
+  text-decoration: none;
+  color: #000;
+
+}
