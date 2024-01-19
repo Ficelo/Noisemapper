@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap">
     <link rel="stylesheet" href="./RESSOURCES/CSS/bandeaux.css" />
     <link rel="stylesheet" href="./RESSOURCES/CSS/index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <script src="./RESSOURCES/JAVASCRIPT/formButton.js"></script>
 
@@ -168,6 +169,22 @@ $conn->close();
  
     <section>
     <form action="votreScriptDeTraitement.php" method="post">
+
+        <script>
+                function changeStarRating(star) {
+                    alert(star.id);
+                }
+
+        </script>
+
+        <div class="etoiles">
+            <span id="star1" class="fa fa-star" onclick="changeStarRating(this)"></span>
+            <span id="star2" class="fa fa-star" onclick="changeStarRating(this)"></span>
+            <span id="star3" class="fa fa-star" onclick="changeStarRating(this)"></span>
+            <span id="star4" class="fa fa-star" onclick="changeStarRating(this)"></span>
+            <span id="star5" class="fa fa-star" onclick="changeStarRating(this)"></span>
+        </div>
+
         <label for="selectConcert">Choisissez un concert :</label>
         <select id="selectConcert" name="selectConcert">
             <?php
