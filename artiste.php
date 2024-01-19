@@ -152,6 +152,11 @@ $conn->close();
                         <label id="classique-label" for="classique">Classique : </label>
                         <input type="checkbox" name="classique" id="classique"><br>
                     </div>
+                    <div class="file-upload-container">
+                        <p>Insérez l'image de couverture du concert : </p>
+                        <input type="file" name="file-upload" id="file-upload">
+                    </div>
+                    
                     
                     <select class="evenement-creation" name="salle-evenement" id="salle-evenement"><br>
                         <?php
