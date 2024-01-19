@@ -37,7 +37,9 @@
     <section id="mission" class="content-section">
     <div class="section-content">
         <h1>Qui sommes nous</h1>
-        <p>Nous sommes bla blablablablablablablablablablablabla</p>
+        <p>Nous sommes une jeune start-up composée de sept collaborateurs passionne.
+            Notre solution est parfaitement adaptée aux jeunes amateurs de musique.
+        </p>
     </div>
     <div class="section-image">
         <img class="taille" src="../grp.jpg" alt="Mission Image">
@@ -49,8 +51,8 @@
     <img class="taille" src="../grp_2.jpg" alt=" histoire image">
     <div class="section-content">
         <h1>Notre histoire</h1>
-        <p>Blablablablablablablablabla
-            Blablablablablablablablabla
+        <p>Notre Ceo Florent Lenaigre-Dubreuil nous a motivées lors d'un meeting à s'investir dans cette solution pour pouvoir faciliter
+            les interactions entre vous les utilisateurs, les artistes et nous en tant qu'administrateur.
         </p>
 </div>
     </section>
