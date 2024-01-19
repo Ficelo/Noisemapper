@@ -28,6 +28,8 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoiseMapper - Mon compte</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data/favicon.ico" type="image/x-icon">
+
 </head>
 <body>
 <?php include('header.php'); ?>
@@ -44,6 +46,8 @@ $conn->close();
             <li class="salles-tab"><a href="#salles" onclick="showTab('salles')">Gérer les salles</a></li>
             <li class="cgu-tab"><a href="#cgu" onclick="showTab('cgu')">Editer les CGU</a></li>
             <li class="cgu-mentions"><a href="#mentions" onclick="showTab('mentions')">Editer les Mentions Légales</a></li>
+            <li class="forum-tab"><a href="#forum" onclick="showTab('forum')">Gérer le forum</a></li>
+ 
 
 
         <?php endif; ?>
@@ -68,6 +72,9 @@ $conn->close();
     </div>
 
     <div id="questions" class="tab-content">
+        <div class="container">
+        <?php include('questions.php')?>
+        </div>
     </div>
 
     <div id="salles" class="tab-content">
@@ -97,6 +104,13 @@ $conn->close();
         <?php include('edit_mentions.php')?>
         </div>
     </div>
+
+    <div id="forum" class="tab-content">
+        <div class="container">
+        <?php include('admin_forum.php')?>
+        </div>
+    </div>
+
 </div>
 </div>
 <script>
