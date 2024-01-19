@@ -343,7 +343,9 @@ h2 {
         font-family: 'Bree Serif', serif;
         width: 40%;
         margin-right: 50%;
+        margin-left: 50%;
         padding-bottom: 10%;
+
     }
     
     .calendrier-mois {
@@ -393,14 +395,15 @@ h2 {
     
     .avis-resume {
         padding: 5px;
+        width: 80%;
     }
     
     .avis-mesavis {
-        margin-top: 10%;
         margin-bottom: 10%;
         margin-right: 10%;
         margin-left: 10%;
         border : 2px dashed #000;
+        width: 80%;
     }
     
     .avis {
@@ -408,6 +411,7 @@ h2 {
         grid-template-columns: 10% 90%;
         padding-left: 5%;
         padding-bottom: 3%;
+        width: 80%;
     }
     
     h3 {
@@ -506,3 +510,33 @@ h2 {
     
 }
 
+@media screen and (max-width : 450px) {
+
+    .calendrier {
+        display: block;
+        width: fit-content;
+        font-family: 'Bree Serif', serif;
+        width: 40%;
+        margin-right: 50%;
+        margin-left: 20%;
+        padding-bottom: 10%;
+
+    }
+
+}
+
+
+@media screen and (max-width : 380px) {
+
+    .calendrier {
+        display: block;
+        width: fit-content;
+        font-family: 'Bree Serif', serif;
+        width: 40%;
+        margin-right: 60%;
+        margin-left: 20%;
+        padding-bottom: 10%;
+
+    }
+
+}
