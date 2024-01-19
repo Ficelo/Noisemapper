@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+// Message à toutes les personnes qui vont lire mon code :
+// Bonne chance mon reuf même moi je sais plus trop ce que j'ai écrit
+
 if (!isset($_SESSION['user_email'])) {
     header("Location: login.php");
     exit();
@@ -8,6 +11,7 @@ if (!isset($_SESSION['user_email'])) {
 
 include('db.php');
 
+// On récupère l'id et le rôle de l'utilisateur connecté
 $user_id = $_SESSION['user_id']; 
 $sql = "SELECT * FROM User WHERE idUser = $user_id";
 $result = $conn->query($sql);
@@ -65,7 +69,12 @@ $conn->close();
 <form action="postevent.php" method="post">
     <div class="calendrier-instertion-container">
 
-
+        <!-- 
+            Là y'a le calendrier, en gros c'est un giga form et les jours c'est des boutons,
+            quand tu clique un jours, y'a une fonction JS qui change la value d'un des <input type="hidden">
+            comme ça quand on submit ça envoie la valeur du jour, du mois et de l'année
+            
+        -->
         <div class="calendrier">
             <div class="calendrier-mois">
                 <p id="moisAnnee">Janvier 2024</p>
@@ -157,18 +166,12 @@ $conn->close();
                     </select><br>
                 
             </div>
-            <!-- <div class = "evenement-insertion">
-                <img src="./RESSOURCES/IMAGES/image-insertion.png" alt="" id="image-insertion">
-            </div> -->
+
             <div class = "evenement-boutons" id="evenements-boutons">
                 <input type="reset" id="bouton-annuler" value="Annuler">
                 <input type="submit" id="bouton-creer" value="Créer">
             </div>
         </div>
-
-        
-        <!-- Ici y'a des trucs à changer pour que ça rende mieux visuellement -->
-        <!-- Aussi faut que je vois comment faire l'upload de fichiers. -->
 
     </div>
 </form>
@@ -194,30 +197,20 @@ $conn->close();
         <div class="titre-concert-wrapper">
             
                 <?php 
-
                     
                     if(!isset($_POST["nouvelIndex"])){
                         $index = 0;
-                        //echo "index : ".$index;
                     } else {
                         $index = intval($_POST["nouvelIndex"]);
-                        //echo "nouvel index : ".$index;
                     }
-                    
 
-
+                    // On récupère tous les concerts de l'artiste
                     $id = $_SESSION["user_id"];
                     $sql = "SELECT Nom, idConcert FROM concert WHERE User_idUser = $id";
                     $result = $conn->query($sql) or die(mysqli_error($conn));
 
                     $concert_nom_avis = $result->fetch_all();
                     print("<h2 class='titre-avis'>".$concert_nom_avis[$index][0]."</h2>");
-                    //print_r($rows);
-                    // for($i = 0; $i < sizeof($concert_nom_avis); $i++){
-                    //     print($concert_nom_avis[$i][0]);
-                    //     echo "<br>";
-                    // }
-                    
                     
                 ?>
     
@@ -239,19 +232,19 @@ $conn->close();
                     }
                     return($in);
                 }
-                
             ?>
             
+            <!-- Boutons pour changer les avis affichés -->
             <div class="calendrier-mois boutons-avis">
                 <form action="artiste.php#evenements-boutons" method="post" >
                     <button class="" type="submit" name="nouvelIndex" id="flecheGaucheAvis" value="<?php echo changeIndex(0, sizeof($concert_nom_avis), $index); ?>" alt=""></button>
                     <button class="" type="submit" name="nouvelIndex" id="flecheDroiteAvis" value="<?php echo changeIndex(1, sizeof($concert_nom_avis), $index); ?>" alt=""></button>
                 </form>
-                
             </div>
         </div>
 
         <?php
+            // On récupère les avis à afficher
             $idConcert = $concert_nom_avis[$index][1];
             $sql = "SELECT COUNT(idAvis) as totalAvis FROM Avis WHERE Concert_idConcert = $idConcert";
             $result = $conn->query($sql) or die(mysqli_error($conn));
@@ -274,9 +267,7 @@ $conn->close();
             $NOTES_5 = trouverNombreNote(5, $conn, $idConcert);
         ?>
 
-
         <p id="res-avis">Résumé des Avis :</p>
-
 
         <div class="resume-temp">
             <div class="notes-barres">
@@ -342,15 +333,14 @@ $conn->close();
         </div>
 
     </div>
+
     <div class="avis-mesavis">
         <h3 id="avis-titre">Mes Avis</h3>
         <?php 
-            $id = $concert_nom_avis[$index][1];
-            $sql = "SELECT User_idUser, Note, Commentaire FROM Avis WHERE Concert_idConcert = $id";
-            $result = $conn->query($sql) or die(mysqli_error($conn));
-
-            //$row = $result->fetch_assoc();
-            //echo $row["User_idUser"]." ".$row["Note"]." ".$row["Commentaire"];
+            
+        $id = $concert_nom_avis[$index][1];
+        $sql = "SELECT User_idUser, Note, Commentaire FROM Avis WHERE Concert_idConcert = $id";
+        $result = $conn->query($sql) or die(mysqli_error($conn));
             
         $imageProfilDefaut = "../RESSOURCES/IMAGES/Ellipse 5.png";
 
@@ -358,15 +348,11 @@ $conn->close();
                         array("./ressources/images/Ellipse 6.png", 4, "bien mais y avait pas de chips"),
                         array("./ressources/images/Ellipse 7.png", 4, "du blalala sah j'ai le flemme d'inventer"),
                         array("./ressources/images/Ellipse 9.png", 3, "encore de la merde faut bien meubler toi même tu sais"),
-                        array("./ressources/images/Ellipse 11.png", 5, "En train de poser un classique"));
-        
-        // $rows = $result->fetch_all();
-        // echo sizeof($rows);                
+                        array("./ressources/images/Ellipse 11.png", 5, "En train de poser un classique"));           
 
+        // Ça affiche les commentaires du concert
         while($row = $result->fetch_assoc()) {
             
-            //$row = $result->fetch_assoc();
-            //echo $row["User_idUser"]." ".$row["Note"]." ".$row["Commentaire"];
             echo "<div class=\"avis\">";
             echo "<img src=\"$imageProfilDefaut\"></img>";
             echo "<div class=\"avis-texte\">";
@@ -381,29 +367,8 @@ $conn->close();
             }
             echo "</div>";
             echo "</div>";
-
-            
         
         }
-        
-        // foreach($testAvis as $avis) {
-        //     echo "<div class=\"avis\">";
-        //     echo "<img src=\"$avis[0]\"></img>";
-        //     echo "<div class=\"avis-texte\">";
-        //     echo "<p>$avis[2]</p>";
-        //     for($i = 0; $i < 5; $i++){
-        //         if($i<$avis[1]){
-        //             echo "<span class=\"fa fa-star checked\"></span>";
-        //         }
-        //         else{
-        //             echo "<span class=\"fa fa-star\"></span>";
-        //         }
-        //     }
-        //     echo "</div>";
-        //     echo "</div>";
-        // }
-
-        //Faurdra changer ça quand y'aura le lien avec le BDD
         
         ?>
 
@@ -428,30 +393,28 @@ $dataPoints = array(
 	array("y" => 90, "label" => "20h12")
 );
  
-//Pour faire le truc mieux faut que je fasse en sorte que ça se lise d'un fichier
-//et que l'array se génére tout seul à partir des données.
-//Pour l'instant on a pas fait des données de test pour ça dans la BDD donc faudra faire le lien plus tard
+// Ça là faudra changer quand on aura des vraies mesures avec le capteur.
 
 ?>
 
 <script>
-window.onload = function () {
- 
-var chart = new CanvasJS.Chart("chartContainer", {
-	title: {
-		text: "",
-	},
-	axisY: {
-		title: ""
-	},
-	data: [{
-		type: "line",
-		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-	}]
-});
-chart.render();
- 
-}
+    window.onload = function () {
+    
+    var chart = new CanvasJS.Chart("chartContainer", {
+        title: {
+            text: "",
+        },
+        axisY: {
+            title: ""
+        },
+        data: [{
+            type: "line",
+            dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+        }]
+    });
+    chart.render();
+    
+    }
 </script>
 
 <h2>Décibels</h2>
