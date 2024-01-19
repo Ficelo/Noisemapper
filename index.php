@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoiseMapper</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./RESSOURCES/CSS/bandeaux.css" />
     <link rel="stylesheet" href="./RESSOURCES/CSS/index.css" />
     
@@ -21,7 +20,6 @@
             <H2>Top Évènements</H2>
         </div>
     </section>
-
     
     <section class="slider">
         <img src="RESSOURCES/IMAGES/1.jpg" alt="img1" class="img__slider active" />
@@ -40,7 +38,7 @@
     </section>
     <script src="RESSOURCES/JAVASCRIPT/app.js"></script>
 
-    <section class="banderole">
+    <section class="banderole" id="cal">
         <div class="Top_evenements">
             <H2>Calendrier des Évènements</H2>
         </div>
@@ -50,8 +48,11 @@
 </form>
 
 
+
 <div class="dateconcert">  <!-- Supposons que ce code soit dans votre fichier HTML, par exemple, index.php -->
-<form action="afficherConcerts.php" method="post">
+
+
+<form action="index.php#cal"  method="post">
     <label for="selectConcert">Sélectionnez une date :</label>
     <select id="selectConcert" name="selectConcert">
         <?php
@@ -75,20 +76,45 @@
         // Fermer la connexion
         $conn->close();
         ?>
+
+        
     </select>
     <input type="submit" value="Choisir cette date">
 </form>
 
+<?php
+    // trier par ordre alphabétique
+?>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var selectConcert = document.getElementById('selectConcert');
+    var concertOptions = Array.from(selectConcert.options);
+
+    concertOptions.sort(function(a, b) {
+      var textA = a.text.toUpperCase();
+      var textB = b.text.toUpperCase();
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    });
+
+    concertOptions.forEach(function(option) {
+      selectConcert.add(option);
+    });
+  });
+
+
+</script>
+
 </div>
 </div>
 </div>  
-
-
-
 </section>
-
-
+            <div class="tableauconcert">
+            <?php
+                include ("afficherConcerts.php")
+            ?>
+            </div>
 </form>
+
 
     <section class="banderole">
         <div class="Top_evenements">
@@ -130,18 +156,17 @@ $conn->close();
 
 
 </form>
-<div class="notetot">
-        <div class="rating-container">
-            <div class="rating-stars" id="ratingStars">
-                <span class="star" onclick="setRating(1)">&#9733;</span>
-                <span class="star" onclick="setRating(2)">&#9733;</span>
-                <span class="star" onclick="setRating(3)">&#9733;</span>
-                <span class="star" onclick="setRating(4)">&#9733;</span>
-                <span class="star" onclick="setRating(5)">&#9733;</span>
-            </div>
+
+<section>
+
+</section>
+
+
+
+    </div>    
 
  
-
+    <section>
     <form action="votreScriptDeTraitement.php" method="post">
         <label for="selectConcert">Choisissez un concert :</label>
         <select id="selectConcert" name="selectConcert">
@@ -174,12 +199,8 @@ $conn->close();
     
 
 </body>
-
-
-
     
 <?php include('./footer.php'); ?>
 
 </html>
-
 

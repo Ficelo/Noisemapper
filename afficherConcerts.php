@@ -38,4 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["selectConcert"])) {
     // Renvoyer le HTML du tableau de concerts
     echo $concertHTML;
 }
+
 ?>
+
