@@ -46,79 +46,46 @@
         </div>
     </section>
 
-    <form action="postevent.php" method="post">
-    <div class="calendrier-instertion-container">
+<section>
+</form>
 
 
-        <div class="calendrier">
-            <div class="calendrier-mois">
-                <p id="moisAnnee">Janvier 2024</p>
-                <img onclick="changerMoisGauche()" id="flecheGauche" src="/RESSOURCES/IMAGES/flecheG.svg" alt="">
-                <img onclick="changerMoisDroite()" id="flecheDroite" src="/RESSOURCES/IMAGES/flecheD.svg" alt="">
-            </div>
-            <div class="calendrier-jours">
-                <table>
-                    <tr>
-                        <th>Lun</th>
-                        <th>Mar</th>
-                        <th>Mer</th>
-                        <th>Jeu</th>
-                        <th>Ven</th>
-                        <th>Sam</th>
-                        <th>Dim</th>
-                    </tr>
-                    <tr class="hover-bleu">
-                        <th><input id="date-2024-01-02" onclick="showValue(this)" class="button-blue-day" type="button" value="2"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="3"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="4"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="5"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="6"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="7"></th>
-                    </tr>
-                    <tr class="hover-bleu">
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="8"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="9"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="10"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="11"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="12"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="13"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="14"></th>
-                    </tr>
-                    <tr class="hover-bleu">
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="15"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="16"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="17"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="18"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="19"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="20"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="21"></th>
-                    </tr>
-                    <tr class="hover-bleu">
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="22"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="23"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="24"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="25"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="26"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="27"></th>
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="28"></th>
-                    </tr>
-                    <tr class="hover-bleu">
-                        <th><input onclick="showValue(this)" class="button-blue-day" type="button" value="29"></th>
-                        <th id="30"><input onclick="showValue(this)" class="button-blue-day" type="button" value="30"></th>
-                        <th id="31"><input onclick="showValue(this)" class="button-blue-day" type="button" value="31"></th>
-                        
-                    </tr>
+<div class="dateconcert">  <!-- Supposons que ce code soit dans votre fichier HTML, par exemple, index.php -->
+<form action="afficherConcerts.php" method="post">
+    <label for="selectConcert">Sélectionnez une date :</label>
+    <select id="selectConcert" name="selectConcert">
+        <?php
+        // Inclure le fichier de configuration de la base de données
+        include('./db.php');
 
-                    <input type="hidden" id="buttonValue" name="buttonValue" value="1">
-                    <input type="hidden" id="moisValue" name="moisValue" value="Janvier">
-                    <input type="hidden" id="anneeValue" name="anneeValue" value="2024">
-                </table>    
-            </div>
-        </div>
+        // Requête pour récupérer les dates des concerts
+        $sql = "SELECT DISTINCT Date FROM concert";
+        $result = $conn->query($sql);
+
+        // Vérifier s'il y a des résultats
+        if ($result->num_rows > 0) {
+            // Parcourir les résultats et ajouter des options à la liste déroulante
+            while ($row = $result->fetch_assoc()) {
+                echo "<option value='" . $row["Date"] . "'>" . $row["Date"] . "</option>";
+            }
+        } else {
+            echo "<option value=''>Aucun concert disponible</option>";
+        }
+
+        // Fermer la connexion
+        $conn->close();
+        ?>
+    </select>
+    <input type="submit" value="Choisir cette date">
+</form>
+
+</div>
+</div>
+</div>  
 
 
-    </div>
-    
+
+</section>
 
 
 </form>
@@ -214,3 +181,5 @@ $conn->close();
 <?php include('./footer.php'); ?>
 
 </html>
+
+
