@@ -106,3 +106,40 @@ function mettreBlanc(element) {
     element.style.borderRadius = "7px";
 
 }
+
+function changerConcert(params) {
+
+    var nouvelIndex;
+
+    var taille = params[0];
+    var direction = params[1];
+    var index = parseInt(params[2]);
+;
+    console.log(params[0], params[1], params[2]);
+
+    if (direction == 0) {
+        if (index <= 0) {
+            index = taille - 1;
+        } else {
+            index = index - 1;
+        }
+    } else {
+        if (index >= taille - 1) {
+            index = 0;
+        } else {
+            index = index + 1;
+        }
+    }
+
+    nouvelIndex = index;
+    console.log(nouvelIndex);
+
+    $.ajax({
+        type:'POST',
+        url: 'artiste.php',
+        data: {nouvelIndex : nouvelIndex}
+    });
+
+    
+}
+

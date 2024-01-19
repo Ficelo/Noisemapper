@@ -18,6 +18,7 @@ if (!isset($_SESSION['user_email'])) {
 
     <title>NoiseMapper</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="./RESSOURCES/CSS/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap">
 
     <style>

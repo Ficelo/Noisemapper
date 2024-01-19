@@ -134,27 +134,33 @@ $conn->close();
         </div>
 
         <div class="evenement-creation-wrapper">
-            <div class="evenement-creation">
+            <div class="evenement-creation-div">
                 
                     <input class="evenement-creation" type="text" name="nom-evenement" id="nom-evenement" placeholder="Nom de l'évenement"><br>
                     <input class="evenement-creation" type="number" name="duree-evenement" id="duree-evenement" placeholder="Durée du concert en minutes"><br>
                     <textarea class="evenement-creation" name="description-evenement" id="description-evenement" cols="30" rows="10" placeholder="Description"></textarea><br>
-                    <div class="evenement-creation">
-                        <label for="classique">Classique : </label>
-                        <input type="checkbox" name="classique" id=""><br>
+                    <div class="evenement-creation evenement-check">
+                        <label id="classique-label" for="classique">Classique : </label>
+                        <input type="checkbox" name="classique" id="classique"><br>
                     </div>
                     
                     <select class="evenement-creation" name="salle-evenement" id="salle-evenement"><br>
-                        <option value="1" selected="true">Bercy</option>
-                        <!-- <option value=""></option>
-                        <option value=""></option> -->
+                        <?php
+                            $sql = "SELECT Nom, idSalle FROM Salle";
+                            $result = $conn->query($sql) or die(mysqli_error($conn));
+                            $salles_nom_avis = $result->fetch_all();
+
+                            for($i = 0; $i < sizeof($salles_nom_avis); $i++){
+                                echo "<option class='evenement-creation-option' value=".$salles_nom_avis[$i][1]." selected='true'>".$salles_nom_avis[$i][0]."</option>";
+                            }
+                        ?>
                     </select><br>
                 
             </div>
             <!-- <div class = "evenement-insertion">
                 <img src="./RESSOURCES/IMAGES/image-insertion.png" alt="" id="image-insertion">
             </div> -->
-            <div class = "evenement-boutons">
+            <div class = "evenement-boutons" id="evenements-boutons">
                 <input type="reset" id="bouton-annuler" value="Annuler">
                 <input type="submit" id="bouton-creer" value="Créer">
             </div>
@@ -167,13 +173,13 @@ $conn->close();
     </div>
 </form>
 
-<section class="banderole">
+<section class="banderole" id="mesNotes">
     <div class="Top_evenements">
         <H2>Mes notes</H2>             
     </div>
 </section>
 
-<div class="avis-container">
+<div class="avis-container" id="avis-container">
     <div class="avis-resume">
         
         <?php
@@ -183,40 +189,89 @@ $conn->close();
                 return ($num/$total)*100;
             }
 
-
         ?>
 
-        <h4 class="titre-concert">
-            <?php 
+        <div class="titre-concert-wrapper">
+            
+                <?php 
 
-                $sql = "SELECT Nom, Description FROM concert WHERE idConcert = 17";
-                $result = $conn->query($sql) or die(mysqli_error($conn));
+                    
+                    if(!isset($_POST["nouvelIndex"])){
+                        $index = 0;
+                        //echo "index : ".$index;
+                    } else {
+                        $index = intval($_POST["nouvelIndex"]);
+                        //echo "nouvel index : ".$index;
+                    }
+                    
 
-                $row = $result->fetch_assoc();
-                echo $row["Nom"]." : ".$row["Description"];
+
+                    $id = $_SESSION["user_id"];
+                    $sql = "SELECT Nom, idConcert FROM concert WHERE User_idUser = $id";
+                    $result = $conn->query($sql) or die(mysqli_error($conn));
+
+                    $concert_nom_avis = $result->fetch_all();
+                    print("<h2 class='titre-avis'>".$concert_nom_avis[$index][0]."</h2>");
+                    //print_r($rows);
+                    // for($i = 0; $i < sizeof($concert_nom_avis); $i++){
+                    //     print($concert_nom_avis[$i][0]);
+                    //     echo "<br>";
+                    // }
+                    
+                    
+                ?>
+    
+
+            <?php
+                function changeIndex($direction, $taille, $in){
+                    if ($direction == 0) {
+                        if ($in <= 0) {
+                            $in = $taille - 1;
+                        } else {
+                            $in = $in - 1;
+                        }
+                    } else {
+                        if ($in >= $taille - 1) {
+                            $in = 0;
+                        } else {
+                            $in = $in + 1;
+                        }
+                    }
+                    return($in);
+                }
+                
             ?>
-        </h4>
+            
+            <div class="calendrier-mois boutons-avis">
+                <form action="artiste.php#evenements-boutons" method="post" >
+                    <button class="" type="submit" name="nouvelIndex" id="flecheGaucheAvis" value="<?php echo changeIndex(0, sizeof($concert_nom_avis), $index); ?>" alt=""></button>
+                    <button class="" type="submit" name="nouvelIndex" id="flecheDroiteAvis" value="<?php echo changeIndex(1, sizeof($concert_nom_avis), $index); ?>" alt=""></button>
+                </form>
+                
+            </div>
+        </div>
 
         <?php
-            $sql = "SELECT COUNT(idAvis) as totalAvis FROM Avis WHERE Concert_idConcert = 17";
+            $idConcert = $concert_nom_avis[$index][1];
+            $sql = "SELECT COUNT(idAvis) as totalAvis FROM Avis WHERE Concert_idConcert = $idConcert";
             $result = $conn->query($sql) or die(mysqli_error($conn));
 
             $row = $result->fetch_assoc();
             $TOTALAVIS = $row["totalAvis"];
 
-            function trouverNombreNote($note, $conn) {
-                $sql = "SELECT COUNT(idAvis) as totalAvis FROM Avis WHERE Note = $note";
+            function trouverNombreNote($note, $conn, $idConcert) {
+                $sql = "SELECT COUNT(idAvis) as totalAvis FROM Avis WHERE Note = $note AND Concert_idConcert = $idConcert";
                 $result = $conn->query($sql) or die(mysqli_error($conn));
 
                 $row = $result->fetch_assoc();
                 return $row["totalAvis"];
             }
 
-            $NOTES_1 = trouverNombreNote(1, $conn);
-            $NOTES_2 = trouverNombreNote(2, $conn);
-            $NOTES_3 = trouverNombreNote(3, $conn);
-            $NOTES_4 = trouverNombreNote(4, $conn);
-            $NOTES_5 = trouverNombreNote(5, $conn);
+            $NOTES_1 = trouverNombreNote(1, $conn, $idConcert);
+            $NOTES_2 = trouverNombreNote(2, $conn, $idConcert);
+            $NOTES_3 = trouverNombreNote(3, $conn, $idConcert);
+            $NOTES_4 = trouverNombreNote(4, $conn, $idConcert);
+            $NOTES_5 = trouverNombreNote(5, $conn, $idConcert);
         ?>
 
 
@@ -290,7 +345,8 @@ $conn->close();
     <div class="avis-mesavis">
         <h3 id="avis-titre">Mes Avis</h3>
         <?php 
-            $sql = "SELECT User_idUser, Note, Commentaire FROM Avis WHERE Concert_idConcert = 17";
+            $id = $concert_nom_avis[$index][1];
+            $sql = "SELECT User_idUser, Note, Commentaire FROM Avis WHERE Concert_idConcert = $id";
             $result = $conn->query($sql) or die(mysqli_error($conn));
 
             //$row = $result->fetch_assoc();
@@ -304,8 +360,11 @@ $conn->close();
                         array("./ressources/images/Ellipse 9.png", 3, "encore de la merde faut bien meubler toi même tu sais"),
                         array("./ressources/images/Ellipse 11.png", 5, "En train de poser un classique"));
         
+        // $rows = $result->fetch_all();
+        // echo sizeof($rows);                
+
         while($row = $result->fetch_assoc()) {
-        
+            
             //$row = $result->fetch_assoc();
             //echo $row["User_idUser"]." ".$row["Note"]." ".$row["Commentaire"];
             echo "<div class=\"avis\">";

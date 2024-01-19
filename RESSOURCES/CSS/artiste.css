@@ -105,6 +105,15 @@ th {
     text-align: center;
 }
 
+.evenement-creation-div {
+    margin-bottom: 5%;
+    padding: 3%;
+    border-radius: 18px;
+    background: rgba(217, 217, 217, 0.00);
+    width: 92%;
+    text-align: center;
+}
+
 input {
     border: none;
     text-align: center;
@@ -234,6 +243,7 @@ h2 {
 .note-gros-chiffre {
     text-align: center;
     font-family: 'Bree Serif', serif;
+    margin-bottom: 40%;
 }
 
 .grosse-note {
@@ -251,8 +261,62 @@ h2 {
 #res-avis {
     font-family: 'Bree Serif', serif; 
     padding-left: 10%; 
+    margin-top: 5%;
+}
+
+.boutons-avis {
+    margin-left: 5%;
     margin-top: 10%;
 }
+
+.titre-avis {
+    margin-left: 5%;
+}
+
+.titre-concert-wrapper {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+}
+
+#flecheGaucheAvis {
+    all:unset;
+    background-image: url("../IMAGES/flecheG.svg");
+    background-size: cover;
+    min-width: 35px;
+    min-height: 35px;
+}
+
+#flecheDroiteAvis {
+    all:unset;
+    background-image: url("../IMAGES/flecheD.svg");
+    background-size: cover;
+    min-width: 35px;
+    min-height: 35px;
+}
+
+#classique {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#classique-label {
+    font-family: 'Bree Serif', serif;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#salle-evenement {
+    width: 100%;
+}
+
+.evenement-creation-option {
+    font-family: 'Bree Serif', serif;
+}
+
+/* .evenement-check {
+    
+} */
+
 
 @media screen and (max-width : 800px) {
     .calendrier-instertion-container {
@@ -438,7 +502,7 @@ h2 {
     #res-avis {
         font-family: 'Bree Serif', serif; 
         padding-left: 10%; 
-        margin-top: 10%;
     }
     
 }
+
