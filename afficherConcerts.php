@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["selectConcert"])) {
     include('db.php');
 
     // Requête pour récupérer les concerts associés à la date sélectionnée
-    $sql = "SELECT * FROM concert WHERE Date = '$selectedDate'";
+    $sql = "SELECT * FROM Concert WHERE Date = '$selectedDate'";
     $result = $conn->query($sql);
 
     // Construire le HTML pour le tableau de concerts
