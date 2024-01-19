@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["selectConcert"])) {
     $selectedDate = $_POST["selectConcert"];
 
     // Inclure le fichier de configuration de la base de données
-    include('./db.php');
+    include('db.php');
 
     // Requête pour récupérer les concerts associés à la date sélectionnée
     $sql = "SELECT * FROM concert WHERE Date = '$selectedDate'";
@@ -21,15 +21,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["selectConcert"])) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $concertHTML .= "<tr>";
-            $concertHTML .= "<td>" . $row["Nom"] . "</td>";
+            $concertHTML .= "<td><a id='lienConcert' href='view_concert.php?id=" . $row['idConcert'] . "'>" . $row["Nom"] . "</a></td>";
             $concertHTML .= "<td>" . $row["Description"] . "</td>";
-            // Ajoutez d'autres colonnes au besoin
             $concertHTML .= "</tr>";
         }
     } else {
         $concertHTML .= "<tr><td colspan='2'>Aucun concert disponible pour la date sélectionnée.</td></tr>";
     }
 
+    
     $concertHTML .= "</table>";
 
     // Fermer la connexion
