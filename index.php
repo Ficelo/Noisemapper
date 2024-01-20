@@ -16,6 +16,8 @@ include('header.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="bandeaux.css" />
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="./RESSOURCES/CSS/bandeaux.css" />
+    <link rel="stylesheet" href="./RESSOURCES/CSS/index.css" />
     
     <script src=".formButton.js"></script>
 
@@ -127,38 +129,40 @@ include('header.php');
             <H2>Note des Concerts</H2>
         </div>
 
+       
+
         <form id="ratingForm">
 
     </section>
 
     <?php
-include('db.php');
+        include('db.php');
 
 
 
-// Sélectionne les données nécessaires de la table Concert
-$sql = "SELECT idConcert, Nom FROM Concert";
+        // Sélectionne les données nécessaires de la table Concert
+        $sql = "SELECT idConcert, Nom FROM Concert";
 
-// Exécute la requête SQL
-$result = $conn->query($sql);
+        // Exécute la requête SQL
+        $result = $conn->query($sql);
 
-// Vérifie si des données ont été récupérées avec succès
-if ($result->num_rows > 0) {
-    // Initialise le tableau pour stocker les données
-    $concerts = array();
+        // Vérifie si des données ont été récupérées avec succès
+        if ($result->num_rows > 0) {
+            // Initialise le tableau pour stocker les données
+            $concerts = array();
 
-    // Parcourt les données et les stocke dans le tableau
-    while($row = $result->fetch_assoc()) {
-        $concerts[] = $row;
-    }
-} else {
-    // Si aucune donnée n'est disponible, renvoie un tableau vide
-    echo json_encode(array());
-}
+            // Parcourt les données et les stocke dans le tableau
+            while($row = $result->fetch_assoc()) {
+                $concerts[] = $row;
+            }
+        } else {
+            // Si aucune donnée n'est disponible, renvoie un tableau vide
+            echo json_encode(array());
+        }
 
-// Ferme la connexion à la base de données
-$conn->close();
-?>
+        // Ferme la connexion à la base de données
+        $conn->close();
+    ?>
 
 
 </form>
@@ -173,8 +177,58 @@ $conn->close();
 
  
     <section>
+
+    <script>
+        function atribuerNote(etoile, note, num) {
+            var noteInput = document.getElementById("noteEtoile");
+            noteInput.value = note;
+            var etoiles  = ["etoile1", "etoile2", "etoile3", "etoile4", "etoile5"]
+            for(var i = 0; i<= num; i++){
+                var e = document.getElementById(etoiles[i]);
+                e.style.color = "yellow";
+            }
+
+            for(var i = 4; i> num; i--){
+                var e = document.getElementById(etoiles[i]);
+                e.style.color = "black";
+            }
+
+            console.log(noteInput.value);
+
+        }
+        
+        /*
+        function mouseOverEtoile(etoile, num) {
+            var etoiles  = ["etoile1", "etoile2", "etoile3", "etoile4", "etoile5"]
+            for(var i = 0; i<= num; i++){
+                var e = document.getElementById(etoiles[i]);
+                e.style.color = "yellow";
+                console.log(etoiles[i]);
+            }
+        }
+
+        function mouseLeaveEtoile(etoile, num) {
+            var etoiles  = ["etoile1", "etoile2", "etoile3", "etoile4", "etoile5"]
+            for(var i = 0; i<= num; i++){
+                var e = document.getElementById(etoiles[i]);
+                e.style.color = "black";
+                console.log(etoiles[i]);
+            }
+        }
+        */
+            
+    </script>
+
     <form action="votreScriptDeTraitement.php" method="post">
+        <input type="hidden" name="note" value="0" id="noteEtoile">
         <label for="selectConcert">Choisissez un concert :</label>
+
+        <span class="fa fa-star" onclick="atribuerNote(this, 1, 0)" onmouseover="mouseOverEtoile(this, 0)" onmouseleave="mouseLeaveEtoile(this,0)" id="etoile1"></span>
+        <span class="fa fa-star" onclick="atribuerNote(this, 2, 1)" onmouseover="mouseOverEtoile(this, 1)" onmouseleave="mouseLeaveEtoile(this,1)" id="etoile2"></span>
+        <span class="fa fa-star" onclick="atribuerNote(this, 3, 2)" onmouseover="mouseOverEtoile(this, 2)" onmouseleave="mouseLeaveEtoile(this,2)" id="etoile3"></span>
+        <span class="fa fa-star" onclick="atribuerNote(this, 4, 3)" onmouseover="mouseOverEtoile(this, 3)" onmouseleave="mouseLeaveEtoile(this,3)" id="etoile4"></span>
+        <span class="fa fa-star" onclick="atribuerNote(this, 5, 4)" onmouseover="mouseOverEtoile(this, 4)" onmouseleave="mouseLeaveEtoile(this,4)" id="etoile5"></span><br><br>
+
         <select id="selectConcert" name="selectConcert">
             <?php
             // Inclure le fichier de configuration de la base de données
