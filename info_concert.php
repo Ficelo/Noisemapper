@@ -185,13 +185,14 @@ if (!isset($_SESSION['user_email'])) {
     </div>
     
    
-    <div class="manque">
-        <a>Il manque un instrument?</a>
-    </div>
+
 
     <?php
         if ($_SESSION['user_role'] <= 1) {
             ?>
+                <div class="manque">
+                    <a>Il manque un instrument?</a>
+                </div>
             <form method="post" action="controlleur_page_info_concert.php">
                 <label for="champ_saisie"></label>
                 <input type="text" name="champ_saisie" id="champ_saisie" required style="margin-left: 7%;">
