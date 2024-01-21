@@ -215,15 +215,6 @@ if (!isset($_SESSION['user_email'])) {
         <a>Estrade</a>
     </div>
 
-    <div class="bloc">
-        <label for="pref"></label>
-        <select name="Preference" id="pref" class="entree">
-            <option class="txt" value="" disabled selected>Préférence</option>
-            <option class="txt" value="jsp">jsp</option>
-            <option class="txt" value="tjr">txt</option>
-        </select>
-    </div>
-
     <div class="img_placement">
         <a><img class="" src="data/placement,screen.png"></a>
     </div>
