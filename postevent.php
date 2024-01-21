@@ -73,5 +73,5 @@
 
     $stmt->close();
     $conn->close();
-    header('Location: artiste.php');
+    header('Location: ajoutConcert.php');
 ?>
