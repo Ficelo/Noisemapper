@@ -103,7 +103,11 @@
 </html>
 
 <style>
+    html, body {
+    overflow: auto;
+}
  body {
+    
         margin: 0;
         padding: 0;
         overflow: hidden;
