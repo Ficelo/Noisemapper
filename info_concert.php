@@ -15,7 +15,7 @@ if (!isset($_SESSION['user_email'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>NoiseMapper</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style5.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap">
     <?php
 
@@ -36,7 +36,6 @@ if (!isset($_SESSION['user_email'])) {
 
         $query = 'SELECT * FROM concert' ;
         $result = $conn->query($query);
-        //$rows = array($result); semble inutile
         
         // Pour initier la page au 1er concert de la bdd (si y a pas de id dans l'url)
         if (isset($_GET["id"])) {
@@ -51,7 +50,7 @@ if (!isset($_SESSION['user_email'])) {
                 }
             $Tempo++;
             }
-        header("Location: Page_info_concert.php?id=" . urlencode($NumConcert));
+        header("Location: info_concert.php?id=" . urlencode($NumConcert));
         }
 
     session_start();
@@ -66,7 +65,6 @@ if (!isset($_SESSION['user_email'])) {
             if ($Changer == 0){
                 $PageSuivant = $row['idConcert'] ;
                 $Changer = 1;
-                //header("Location: test_url.php?id=" . urlencode($row['idConcert']));
             }
         }
     }
@@ -141,8 +139,8 @@ if (!isset($_SESSION['user_email'])) {
     </div>
     <div class="flecheG">
         <?php 
-        $urlfinalsuivant = "Page_info_concert.php?id=$PageSuivant";
-        $urlfinalprecedent = "Page_info_concert.php?id=$PagePrecedent";
+        $urlfinalsuivant = "info_concert.php?id=$PageSuivant";
+        $urlfinalprecedent = "info_concert.php?id=$PagePrecedent";
         //Flèche de Gauche
         echo '<a href="';
         echo $urlfinalprecedent;
