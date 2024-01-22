@@ -57,23 +57,19 @@ include('header.php');
 
 
 
-    <div class="dateconcert">  <!-- Supposons que ce code soit dans votre fichier HTML, par exemple, index.php -->
+    <div class="dateconcert"> 
 
 
 <form action="index.php#cal"  method="post">
     <label for="selectConcert">Sélectionnez une date :</label>
     <select id="selectConcert" name="selectConcert">
         <?php
-        // Inclure le fichier de configuration de la base de données
         include('db.php');
 
-        // Requête pour récupérer les dates des concerts
         $sql = "SELECT DISTINCT Date FROM Concert";
         $result = $conn->query($sql);
 
-        // Vérifier s'il y a des résultats
         if ($result->num_rows > 0) {
-            // Parcourir les résultats et ajouter des options à la liste déroulante
             while ($row = $result->fetch_assoc()) {
                 echo "<option value='" . $row["Date"] . "'>" . $row["Date"] . "</option>";
             }
@@ -81,7 +77,6 @@ include('header.php');
             echo "<option value=''>Aucun concert disponible</option>";
         }
 
-        // Fermer la connexion
         $conn->close();
         ?>
 
@@ -91,7 +86,6 @@ include('header.php');
 </form>
 
 <?php
-    // trier par ordre alphabétique
 ?>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
@@ -140,27 +134,20 @@ include('header.php');
 
 
 
-        // Sélectionne les données nécessaires de la table Concert
         $sql = "SELECT idConcert, Nom FROM Concert";
 
-        // Exécute la requête SQL
         $result = $conn->query($sql);
 
-        // Vérifie si des données ont été récupérées avec succès
         if ($result->num_rows > 0) {
-            // Initialise le tableau pour stocker les données
             $concerts = array();
 
-            // Parcourt les données et les stocke dans le tableau
             while($row = $result->fetch_assoc()) {
                 $concerts[] = $row;
             }
         } else {
-            // Si aucune donnée n'est disponible, renvoie un tableau vide
             echo json_encode(array());
         }
 
-        // Ferme la connexion à la base de données
         $conn->close();
     ?>
 
