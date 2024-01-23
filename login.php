@@ -6,14 +6,18 @@ if (isset($_SESSION['user_email'])) {
     header("Location: profil.php");
     exit();
 }
+// On a inclu un fichier appelé db.php qui permet d'établir une connexion avec notre base de données
 include('db.php');
-
+// Création d'une variable pour détecter les messages d'erreur s'il y en a 
 $registrationError = '';
-
+// On vérifie dès le début si le formulaire a bien été soumis avec la méthode appelée post
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Le code va récupérer le champ de l'adresse ainsi que du mot de passe
     $email = $_POST['email'];
     $password = $_POST['password'];
-
+    
+    
+    // Nous utilisons une requete SQL pour avoir les différentes informations sur un utilisateur
     $stmt = $conn->prepare("SELECT idUser, MotDePasse, Prenom, PhotoProfil, Role FROM User WHERE Mail = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -23,8 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         $hashedPassword = $row['MotDePasse'];
 
-        // Vérifier le mot de passe
+        // On vérifie si le mot de passe qui est soumis est le meme que le mot de passe haché stocké
         if (password_verify($password, $hashedPassword)) {
+            // Si le mot de passe est correct, nous enregistrons les informations des utilisateurs dans la session
             $_SESSION['user_email'] = $email;
             $_SESSION['user_id'] = $row['idUser'];
             $_SESSION['user_name'] = $row['Prenom'];
@@ -33,12 +38,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: index.php");
             exit();
         } else {
+            // Si le mot de passe n'est pas le bon, il y a un message d'erreur 
             $registrationError = "Email ou mot de passe incorrect";
         }
     } else {
+        // Si l'utilisateur n'est pas trouvé dans la base de données, il y a un message d'erreur
         $registrationError = "Email ou mot de passe incorrect";
     }
 }
+// Il y a une fermeture de la connexion à la base de donnée 
 $conn->close();
 ?>
 
