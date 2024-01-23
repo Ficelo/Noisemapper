@@ -1,23 +1,24 @@
 <?php
 // il y a un démarrage de la session php 
 session_start();
-
+// On vérifie si l'utlisateur est connecté, si c'est le cas redirection vers la page de profil
 if (isset($_SESSION['user_email'])) {
     header("Location: profil.php");
     exit();
 }
-
+// On décide d'inclure un fichier appelé dp.php pour qu'il y est une connexion avec la base de donnée
 include('db.php');
-
+// Il y a création d'une variable pour détecter des erreurs de création de compte
 $registrationError = '';
-
+// On vérifie si le formulaire a bien été soumis avec la méthode post
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Le code récupère et va valider les données présentes dans le formulaire
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     $firstName = htmlspecialchars($_POST['first_name']);
     $lastName = htmlspecialchars($_POST['last_name']);
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirm_password'];
-
+    // On vérifie si le reCAPTCHA a été validé
     if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
         $recaptchaSecretKey = '6LdPkUspAAAAAFY5sygKq-7Uj0tcm78ULqM1o2OJ';
         $recaptchaResponse = $_POST['g-recaptcha-response'];
@@ -50,13 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $checkEmailQuery = "SELECT * FROM User WHERE Mail = ?";
     $stmtCheckEmail = $conn->prepare($checkEmailQuery);
 
-    // Liaison des paramètres
+    // On fait une liaison de paramètres
     $stmtCheckEmail->bind_param("s", $email);
 
-    // Exécution de la requête
+    // Il y a éxécution de la requete
     $stmtCheckEmail->execute();
 
-    // Récupération du résultat
+    // Il y a ici une récupération du résultat
     $result = $stmtCheckEmail->get_result();
 
     if ($result->num_rows > 0) {
@@ -64,19 +65,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif ($password !== $confirmPassword) {
         $registrationError = "Les mots de passe ne correspondent pas.";
     } else {
-        // Ajoutez ici la validation et la sécurisation appropriées
+        //  on a Ajouté ici la validation et la sécurisation appropriées
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        // Insertion dans la base de données
-        // Préparation de la requête
+        // On décide ici de faire une insertion dans la base de données
+        // On prépare la requête
         $stmt = $conn->prepare("INSERT INTO User (Mail, MotDePasse, Prenom, Nom) VALUES (?, ?, ?, ?)");
 
-        // Liaison des paramètres
+        // On fait une liaison de paramètres 
         $stmt->bind_param("ssss", $email, $hashedPassword, $firstName, $lastName);
 
-        // Exécution de la requête
+        //  Il y a exécution de la requête
         if ($stmt->execute()) {
-            // Récupération des informations de l'utilisateur après création du compte
+            //  on obtient une récupération des informations de l'utilisateur après création du compte
             $userId = $stmt->insert_id;
             $getUserInfoQuery = "SELECT idUser, Prenom, Nom, PhotoProfil, Role FROM User WHERE idUser = ?";
             $userInfoStmt = $conn->prepare($getUserInfoQuery);
@@ -87,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($userInfoResult->num_rows > 0) {
                 $row = $userInfoResult->fetch_assoc();
 
-                // Ajout des informations nécessaires dans la session
+                
                 $_SESSION['user_email'] = $email;
                 $_SESSION['user_id'] = $row['idUser'];
                 $_SESSION['user_name'] = $row['Prenom'];
@@ -95,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['user_photo'] = $row['PhotoProfil'];
                 $_SESSION['user_role'] = $row['Role'];
 
-                // Redirection vers la page profil.php
+                //  Il y a ici, une redirection vers la page profil.php
                 header("Location: profil.php");
                 exit();
             } else {
@@ -105,13 +106,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $registrationError = "Erreur lors de la création du compte : " . $stmt->error;
         }
 
-        // Fermeture des déclarations
+        // On fait une fermeture des déclarations
         $stmt->close();
         $userInfoStmt->close();
         $stmtCheckEmail->close();
 
     }
 }
+// On ferme la connexion à la base de donnée
 $conn->close();
 ?>
 
