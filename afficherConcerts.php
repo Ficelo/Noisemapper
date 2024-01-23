@@ -1,16 +1,17 @@
 <?php
+// Tout d'abord, cela vérifie si le formule a bien été envoyé avec la méthode post et si la variable selectConcert est bien définie
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["selectConcert"])) {
-    // Récupérer la date sélectionnée depuis la requête
+    // Ici, nous récupérons la date sélectionnée depuis une requete appelé post
     $selectedDate = $_POST["selectConcert"];
 
-    // Inclure le fichier de configuration de la base de données
+    // On inclue un fichier de configuration appelé db.php qui permet de faire la connexion à la base de données
     include('db.php');
 
-    // Requête pour récupérer les concerts associés à la date sélectionnée
+    // Nous sommes dans le cas d'une requete qui permet de récupérer les concerts associés à une date séléctionnée précise
     $sql = "SELECT * FROM Concert WHERE Date = '$selectedDate'";
     $result = $conn->query($sql);
 
-    // Construire le HTML pour le tableau de concerts
+    // On met en place du HTML pour créer le tableau de concerts
     $concertHTML = "<table border='1'>
                     <tr>
                         <th>Nom du concert</th>
@@ -32,10 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["selectConcert"])) {
     
     $concertHTML .= "</table>";
 
-    // Fermer la connexion
+    // On ferme la connexion à la base de donnée 
     $conn->close();
 
-    // Renvoyer le HTML du tableau de concerts
+    //  Cela permet de renvoyer le HTML du tableau de concerts
     echo $concertHTML;
 }
 
