@@ -1,6 +1,7 @@
 <?php
 
-session_start(); // démarre la session 
+session_start(); // On démarre la session
+// il y a une vérification au niveau du code pour voir si un utilisateur est déja connecté, dans ce cas il y a redirection vers la page de profil
 if (isset($_SESSION['user_email'])) {
     header("Location: profil.php");
     exit();
