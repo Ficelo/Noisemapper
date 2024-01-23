@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+session_start(); // démarre la session 
 if (isset($_SESSION['user_email'])) {
     header("Location: profil.php");
     exit();
