@@ -1,4 +1,5 @@
 <?php
+// il y a un démarrage de la session php 
 session_start();
 
 if (isset($_SESSION['user_email'])) {
